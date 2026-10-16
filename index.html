@@ -90,6 +90,39 @@ header{position:relative;z-index:2;display:flex;justify-content:space-between;al
 @media(max-width:360px){.hero>.art{height:154px}.judge-visual svg{height:164px}.hero-copy>h1{font-size:40px}.cert-center{grid-template-columns:48% minmax(0,1fr)}.country{font-size:29px}}
 @media(prefers-reduced-motion:reduce){.app::before,.app::after,.judge-visual svg{animation:none!important}*{scroll-behavior:auto!important}}
 @media print{.app::after{display:none!important}.cert-photo{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+/* Mascot edition: the original hand-drawn chibi Zhong Kui judge. */
+.judge-visual{width:min(100%,455px);max-width:455px;height:525px;transform:none;filter:none;display:flex;align-items:center;justify-content:center}
+.judge-graphic{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;isolation:isolate}
+.judge-graphic::before{content:"";position:absolute;z-index:-1;left:5%;top:10%;width:90%;height:75%;border-radius:51% 43% 50% 46%;border:6px solid var(--ink);box-shadow:10px 11px 0 var(--ink);background:conic-gradient(from -20deg,#84ffd0 0 18%,#ff6aaf 18% 35%,#fff34f 35% 54%,#a88dff 54% 73%,#84ffd0 73% 100%);transform:rotate(-13deg)}
+.judge-graphic::after{content:"✦";position:absolute;color:var(--acid);-webkit-text-stroke:3px var(--ink);font-size:80px;font-weight:1000;top:0;left:-4%;transform:rotate(-12deg)}
+.judge-mascot{position:relative;z-index:2;display:block;width:100%;max-width:440px;height:auto;object-fit:contain;filter:drop-shadow(5px 7px 0 rgba(36,22,82,.24));animation:mascotHover 3.8s ease-in-out infinite alternate}
+.judge-pop-seal{position:absolute;z-index:3;right:-8%;bottom:14%;display:grid;place-items:center;text-align:center;width:100px;height:100px;border:4px solid var(--ink);border-radius:50%;background:var(--acid);box-shadow:6px 6px 0 var(--ink);color:var(--ink);font-size:20px;font-weight:1000;transform:rotate(14deg);line-height:1.25}
+@keyframes mascotHover{from{translate:0 0}to{translate:0 -10px}}
+@media(min-width:831px){.art{height:570px;min-height:570px}.judge-visual{height:525px;width:min(100%,455px)}}
+@media(max-width:830px){
+.hero>.art{height:235px;min-height:235px;overflow:hidden;max-width:500px;margin:1px auto 8px}
+.judge-visual{width:340px;max-width:100%;height:235px;overflow:hidden}
+.judge-graphic{height:235px;align-items:flex-start;overflow:hidden;mask-image:linear-gradient(#000 82%,transparent 100%);-webkit-mask-image:linear-gradient(#000 82%,transparent 100%)}
+.judge-graphic::before{height:220px;width:270px;top:28px;left:50%;margin-left:-135px;border-width:4px;box-shadow:6px 6px 0 var(--ink)}
+.judge-graphic::after{font-size:48px;left:4%;top:9px;-webkit-text-stroke:2px var(--ink)}
+.judge-mascot{width:295px;max-width:none;height:auto;margin-top:-12px}
+.judge-pop-seal{width:68px;height:68px;right:5%;bottom:30px;font-size:14px;border-width:3px;box-shadow:4px 4px 0 var(--ink)}
+}
+@media(max-width:490px){
+.hero>.art{height:203px;margin:1px auto 7px}
+.judge-visual,.judge-graphic{height:203px}
+.judge-mascot{width:255px;margin-top:-8px}
+.judge-graphic::before{width:230px;height:177px;top:24px;margin-left:-115px}
+.judge-pop-seal{width:60px;height:60px;font-size:12px;bottom:17px;right:9%}
+}
+@media(max-width:360px){
+.hero>.art,.judge-visual,.judge-graphic{height:178px}
+.judge-mascot{width:230px}
+.judge-graphic::before{height:163px;width:215px;margin-left:-108px}
+.judge-pop-seal{width:54px;height:54px;right:3%;bottom:20px;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.judge-mascot{animation:none!important}}
 </style>
 </head>
 <body>
@@ -115,24 +148,11 @@ header{position:relative;z-index:2;display:flex;justify-content:space-between;al
       </div>
       <div class="art" aria-hidden="true">
 <div class="judge-visual">
-<svg viewBox="0 0 560 470" xmlns="http://www.w3.org/2000/svg" role="presentation" preserveAspectRatio="xMidYMid meet">
-<defs><pattern id="popDots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2" fill="#241652" opacity=".17"/></pattern><linearGradient id="judgeGrad" x2="1" y2="1"><stop stop-color="#97ffce"/><stop offset=".55" stop-color="#83dfff"/><stop offset="1" stop-color="#ffa1d8"/></linearGradient></defs>
-<g transform="rotate(-3 280 230)">
-<rect x="30" y="29" width="510" height="416" rx="25" fill="#241652"/><rect x="20" y="16" width="510" height="416" rx="25" fill="url(#judgeGrad)" stroke="#241652" stroke-width="8"/><rect x="27" y="23" width="496" height="403" rx="19" fill="url(#popDots)"/>
-<path d="M20 333L530 222v91L20 425Z" fill="#fff34f" stroke="#241652" stroke-width="5"/><circle cx="86" cy="107" r="42" fill="#ff6aaf" stroke="#241652" stroke-width="6"/><path d="M86 75v64m-32-32h64" stroke="#241652" stroke-width="8" stroke-linecap="round"/>
-<path d="M433 345l19-41 19 41 41 19-41 19-19 40-19-40-41-19Z" fill="#ff6aaf" stroke="#241652" stroke-width="5"/>
-<text x="53" y="386" font-size="26" font-weight="1000" fill="#241652" font-family="sans-serif">THE BUREAU</text><text x="54" y="414" font-size="19" font-weight="900" fill="#241652" font-family="sans-serif">OF IMPRESSIONS</text>
-<path d="M175 425q-21-118 36-148 38-23 78-16 89-4 117 71l19 93" fill="#6756f6" stroke="#241652" stroke-width="8"/>
-<path d="M234 266l46 65 44-65" fill="#fffaf0" stroke="#241652" stroke-width="7"/><path d="M271 329l10-13 15 15-17 92-24-3Z" fill="#ff6aaf" stroke="#241652" stroke-width="5"/>
-<ellipse cx="281" cy="209" rx="86" ry="98" fill="#ffcea4" stroke="#241652" stroke-width="9"/><path d="M194 198q-21-123 87-124 104-7 91 124-29-12-43-45-41 28-135 45" fill="#241652"/>
-<path d="M211 210q20-9 34-1m71 0q19-8 34 0" stroke="#241652" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="237" cy="225" r="7" fill="#241652"/><circle cx="332" cy="225" r="7" fill="#241652"/><path d="M270 258q15 17 31 0" stroke="#d75882" stroke-width="7" stroke-linecap="round" fill="none"/>
-<ellipse cx="221" cy="251" rx="18" ry="9" fill="#ff87a6" opacity=".72"/><ellipse cx="350" cy="251" rx="18" ry="9" fill="#ff87a6" opacity=".72"/>
-<path d="M201 138l-13-55 91-52 102 51-15 56Z" fill="#241652" stroke="#241652" stroke-width="9"/><path d="M202 95l76-43 88 43-4 38-78 17-76-17Z" fill="#513deb" stroke="#241652" stroke-width="7"/><path d="M276 67v60" stroke="#fff34f" stroke-width="9" stroke-linecap="round"/><circle cx="277" cy="126" r="16" fill="#fff34f" stroke="#241652" stroke-width="5"/>
-<path d="M191 354l-40 71h73l31-84" fill="#4631c0" stroke="#241652" stroke-width="7"/><path d="M332 342l103-42 43 105-103 33Z" fill="#fffaf0" stroke="#241652" stroke-width="7"/><path d="M366 358l72-27m-60 51 70-27m-59 49 39-15" stroke="#241652" stroke-width="6" opacity=".6"/><path d="M340 366q26-19 45 8l-15 26q-23 16-37-5" fill="#ffcea4" stroke="#241652" stroke-width="6"/>
-<path d="M182 334l-43-94" stroke="#241652" stroke-width="19" stroke-linecap="round"/><path d="M152 280q24-16 34 5l13 46-28 21-26-35" fill="#ffcea4" stroke="#241652" stroke-width="6"/><path d="M102 196l60 123" stroke="#241652" stroke-width="14" stroke-linecap="round"/>
-<rect x="76" y="171" width="58" height="42" rx="11" transform="rotate(-21 105 192)" fill="#ff6aaf" stroke="#241652" stroke-width="6"/><rect x="64" y="144" width="83" height="31" rx="6" transform="rotate(-21 105 159)" fill="#fff34f" stroke="#241652" stroke-width="6"/>
-<g transform="rotate(6 413 102)"><path d="M354 26h140q20 0 20 20v77q0 20-20 20h-56l-21 24-7-24h-56q-20 0-20-20V46q0-20 20-20Z" fill="#fffaf0" stroke="#241652" stroke-width="6"/><text x="424" y="76" fill="#241652" font-size="29" text-anchor="middle" font-weight="1000" font-family="PingFang SC, Microsoft YaHei, sans-serif">本官先</text><text x="424" y="111" fill="#fa3f9c" font-size="29" text-anchor="middle" font-weight="1000" font-family="PingFang SC, Microsoft YaHei, sans-serif">看看。</text></g>
-</g></svg></div>
+  <div class="judge-graphic">
+    <img class="judge-mascot" src="./assets/judge.webp" width="440" height="525" alt="" loading="eager" decoding="async" fetchpriority="high">
+    <span class="judge-pop-seal" aria-hidden="true">本官<br>已阅!</span>
+  </div>
+</div>
         <span class="float-star">✳</span><span class="sticker one">本官<br>已阅!</span><span class="sticker two">✦ NO.001</span>
         <div class="art-poster">
           <div class="art-heading"><span>国籍鉴定</span><span>OFFICIAL-ish / 2026</span></div>
