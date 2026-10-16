@@ -86,7 +86,7 @@ header{position:relative;z-index:2;display:flex;justify-content:space-between;al
       <details class="extras">
         <summary>✎ 想给证书改个名字？</summary>
         <div class="extra-row"><label for="nickname">鉴定对象</label><input id="nickname" maxlength="12" value="神秘访客" aria-label="证书昵称"><button id="applyNameBtn" class="mini-btn" type="button">确认修改</button></div>
-        <div class="extra-row"><button class="mini-btn" id="printBtn" type="button">打印 / 保存 PDF</button></div>
+        <div class="extra-row"><button class="mini-btn" id="printBtn" type="button">打印 / 保存 PDF</button><button class="mini-btn" id="changePhotoBtn" type="button">↩ 换一张照片</button></div>
       </details>
       <p class="loading-note" id="saveHint" aria-live="polite"></p>
     </main>
@@ -129,10 +129,10 @@ drop.addEventListener("drop",function(e){loadPhoto(e.dataTransfer&&e.dataTransfe
 $("sampleBtn").addEventListener("click",function(){
  var svg=$("demoSvg").cloneNode(true);svg.setAttribute("xmlns","http://www.w3.org/2000/svg");var code=new XMLSerializer().serializeToString(svg),source="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(code);openResult(source);
 });
-$("retryBtn").addEventListener("click",function(){showHome();});
+$("retryBtn").addEventListener("click",function(){var before=current&&current.name,next=chooseCountry(),tries=0;while(next.name===before&&tries++<20)next=chooseCountry();setCountry(next);caseNumber++;$("caseId").textContent="FILE #"+String(caseNumber).padStart(4,"0")+" / IMPRESSION STAMP";notice("重审完毕，本官重新钦定了结果");});
 $("applyNameBtn").addEventListener("click",function(){name=$("nickname").value.trim().slice(0,12)||"神秘访客";$("nickname").value=name;$("nameplate").textContent="鉴定对象："+name;notice("证书署名已更新");});
 $("nickname").addEventListener("keydown",function(e){if(e.key==="Enter")$("applyNameBtn").click();});
-$("printBtn").addEventListener("click",function(){window.print();});
+$("printBtn").addEventListener("click",function(){window.print();});$("changePhotoBtn").addEventListener("click",function(){showHome();fileInput.click();});
 function roundRect(ctx,x,y,w,h,r,fill,stroke,lineWidth){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.lineWidth=lineWidth||5;ctx.strokeStyle=stroke;ctx.stroke();}}
 function txt(ctx,v,x,y,size,color,weight,align){ctx.font=(weight||900)+" "+size+"px 'Arial Black','PingFang SC','Microsoft YaHei',sans-serif";ctx.fillStyle=color;ctx.textAlign=align||"left";ctx.fillText(v,x,y);}
 function drawPhoto(ctx,img,x,y,w,h){
