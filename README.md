@@ -1,47 +1,46 @@
-# 国籍鉴定
+# 国籍鉴定 · 印象签
 
-面向手机的恶搞角色证书生成器，采用撞色艺术海报风格。
+五颜六色的波普艺术展风格「国籍鉴定」恶搞网页，手机和电脑都能玩。无需后端或 API。
 
-公开体验：https://parallel-passport-kai.imjusttrying341.chatgpt.site
+## 玩法
 
-上传照片后自动进入第二页生成证书，支持保存 PNG、修改昵称、重新抽签，以及通过浏览器打印为 PDF。
+- **呈交照片**：从设备上传 JPG、PNG 或 WebP，或选“没带照片？先审个替身。”
+- **本局结论已出**：证书显示“国籍鉴定 / 本官今日钦定 / [趣味结果] / 本官已阅，暂不接受狡辩。”
+- **申请重审**：使用同一张照片重新抽选证书。
+- **保存高清证书**：生成 1200 × 1600 PNG；另可打印 / 保存 PDF、修改昵称、换照片。
+- 证书不包含额外的随机提示、趣味角色设定或底部免责声明。
 
-## 部署
+所有照片都在浏览器本地处理，不传给服务器。国籍结果由随机函数生成，**不识别照片人物的真实国籍**。
 
-这是纯静态网站，无须后端、数据库、API Key 或构建步骤。将 `dist/` 设为网站根目录即可部署。
+## 本地运行
 
-本地预览需要 Python 3：
+这是一个**单文件静态网站**。下载 `index.html` 后用现代浏览器直接打开，或在项目根目录使用：
 
-```bash
-python3 -m http.server 8000 --directory dist
+```sh
+python3 -m http.server 8000
 ```
 
-然后打开 `http://localhost:8000`。
+浏览器访问 http://localhost:8000。
 
-## 功能
+## GitHub Pages 公开部署
 
-- 本机处理 JPG、PNG、WebP 图片，支持拖放，最大 15 MB。
-- 手机优先的两屏流程与底部保存按钮。
-- 1200 × 1600 高清 PNG，以及打印 / PDF 导出。
-- 日本角色默认 70% 权重，可在编辑面板调整。
-- 昵称编辑、重抽、返回取消和减少动画偏好支持。
-- 自带中文字库。
+自动部署脚本已经放在 `.github/workflows/pages.yml`。要启用公开访问：
 
-## 结果的含义
+1. 打开本仓库 **Settings → General → Danger Zone → Change repository visibility → Public**，确认公开（请确保没有不想公开的文件）。
+2. 打开 **Settings → Pages → Build and deployment → Source**，选择 **GitHub Actions**。
+3. 到 **Actions** 页面运行或重新运行 `Deploy Nationality Check to GitHub Pages` 工作流（`Run workflow` / `Re-run jobs`）。
+4. 工作流成功后网页应位于：**https://kai-da-wang.github.io/nationality-check/**。
 
-本项目用于随机角色创作，照片只作插图。抽签函数不接收照片、面部特征或个人属性，不识别真实国籍。图片仅保存在页面内存中，不上传服务器。
+此链接仅在 Pages 部署成功后可访问；代码推送本身不意味着网页已经公开。
 
-海报含有“娱乐角色作品 / CHARACTER ART”展签，不是官方文件。
+## 文件结构
 
-## 测试
-
-需要 Node.js 22 或更新版本：
-
-```bash
-npm install
-npm test
+```text
+index.html                     网页本体（CSS 与 JavaScript 均内嵌）
+.github/workflows/pages.yml    GitHub Pages 自动部署
+README.md                      项目说明
 ```
 
-测试覆盖加权抽签、文字边界、字库与证书渲染，以及上传、生成、编辑、下载、打印和返回取消的逻辑。
+## 说明
 
-字体基于 Noto Sans SC 合并并重命名为 Parallel Sans，适用 SIL Open Font License，见 `dist/fonts/OFL.txt`。
+这是一款娱乐性角色证书生成器，非官方国籍鉴定服务；人物照片不会用于推断真实种族、民族或国籍。
