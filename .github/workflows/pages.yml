@@ -23,6 +23,9 @@ jobs:
         run: |
           mkdir -p site
           cp index.html site/index.html
+          # Copy mascot and all future static assets into the Pages artifact.
+          if [ -d assets ]; then cp -R assets site/assets; fi
+          test -s site/assets/judge.webp
           touch site/.nojekyll
       - name: Configure Pages
         uses: actions/configure-pages@v5
