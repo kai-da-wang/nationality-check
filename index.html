@@ -172,7 +172,7 @@ async function downloadCard(){
   ctx.lineJoin="round";ctx.lineWidth=5;ctx.textAlign="left";ctx.strokeStyle=ink;ctx.strokeText(current.name,601,800);
   txt(ctx,current.name,600,800,textSize,current.color,1000);
   txt(ctx,current.en,611,870,29,ink,1000);
-  ctx.save();ctx.translate(600,1196);ctx.rotate(-.047);ctx.fillStyle=acid;ctx.strokeStyle=ink;ctx.lineWidth=7;ctx.fillRect(-660,-76,1320,149);ctx.strokeRect(-660,-76,1320,149);txt(ctx,"本官已阅，暂不接受狡辩。",600-0,21,52,ink,1000,"center");ctx.restore();
+  ctx.save();ctx.translate(600,1196);ctx.rotate(-.047);ctx.fillStyle=acid;ctx.strokeStyle=ink;ctx.lineWidth=7;ctx.fillRect(-660,-76,1320,149);ctx.strokeRect(-660,-76,1320,149);txt(ctx,"本官已阅，暂不接受狡辩。",0,21,52,ink,1000,"center");ctx.restore();
   var displayed="鉴定对象："+name;if(displayed.length>15)displayed=displayed.slice(0,15);
   roundRect(ctx,72,1330,640,95,0,"#fff",ink,5);txt(ctx,displayed,96,1392,35,ink,1000);
   ctx.save();ctx.translate(1000,1373);ctx.rotate(-.2);ctx.setLineDash([12,9]);roundRect(ctx,-135,-74,270,148,0,null,"#ed2b89",7);ctx.setLineDash([]);txt(ctx,"✶",0,-4,42,"#ed2b89",1000,"center");txt(ctx,"APPROVED",0,47,34,"#ed2b89",1000,"center");ctx.restore();
