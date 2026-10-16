@@ -19,6 +19,77 @@ header{position:relative;z-index:2;display:flex;justify-content:space-between;al
 @media(max-width:490px){.edition{font-size:9px;padding:7px}.brand{font-size:16px}.seal{width:38px;height:38px;font-size:21px}.eyebrow{font-size:10px}.hero h1{font-size:clamp(45px,12vw,67px)}.hero h1 em{-webkit-text-stroke:1.5px var(--ink);text-shadow:3px 4px 0 var(--ink),6px 6px 0 var(--pink)}.lead{font-size:16px}.upload-zone{margin-top:27px;box-shadow:7px 7px 0 var(--ink)}.big-button{font-size:21px}.art{min-height:390px;margin:20px auto}.art-poster{padding:15px}.art-portrait{height:218px}.sticker.one{width:74px;height:74px;font-size:15px;top:27px}.sticker.two{font-size:17px;bottom:28px}.float-star{font-size:55px}.art-footer{font-size:43px}.footer-strip{font-size:9px}.cert{border-width:3px;box-shadow:7px 8px 0 var(--ink)}.cert-upper{padding-top:4%}.cert-mark{width:43px;height:43px;font-size:25px;border-width:2px}.cert-title{font-size:clamp(43px,11.5vw,64px)}.cert-english{border-top-width:2px}.cert-center{grid-template-columns:44% 1fr;margin-top:6%}.cert-photo-wrap{padding:4px;border-width:2px;box-shadow:4px 4px 0 var(--ink)}.cert-photo{border-width:1px}.country{font-size:clamp(36px,10vw,61px);text-shadow:2px 3px 0 var(--acid),4px 5px 0 var(--ink)}.country-eyebrow{padding:4px;font-size:9px}.cert-band{margin-top:6%}.cert-bottom{margin-top:5%}.actions{margin-top:25px}.action{font-size:15px;min-height:56px}.extra-row{flex-wrap:wrap}.extra-row label{width:100%}}
 @media(prefers-reduced-motion:no-preference){.seal{animation:turn 4s ease-in-out infinite alternate}.float-star{animation:float 3s ease-in-out infinite alternate}@keyframes turn{to{transform:rotate(5deg)}}@keyframes float{to{transform:translateY(-17px) rotate(-14deg)}}}
 @media print{@page{size:portrait;margin:0}html,body,.app{background:white!important}.app:before,header,.result-head,.actions,.extras,.footer-strip,.toast,.screen-home{display:none!important}.main{padding:0!important;max-width:none!important}.screen-result,.cert{display:block!important}.cert{width:100vw;height:133.333vw;max-height:100vh;aspect-ratio:3/4;box-shadow:none!important;border-width:2px;print-color-adjust:exact;-webkit-print-color-adjust:exact}body{overflow:hidden}}
+
+/* IMPRESSION_POP_V2 */
+:root{--ink:#241652;--cream:#fffaf0;--pink:#ff61aa;--acid:#fff34f;--blue:#514af4;--mint:#84ffd0}
+.app{background:radial-gradient(circle at 88% 9%,#ff82c4 0%,transparent 30%),radial-gradient(circle at 0% 80%,#9effd7 0%,transparent 31%),radial-gradient(circle at 65% 65%,#c6bdff 0%,transparent 32%),#efebff;isolation:isolate}
+.app::before{animation:popDotsMove 25s linear infinite}
+.app::after{content:"";position:absolute;z-index:0;inset:-15% -30%;pointer-events:none;background:radial-gradient(ellipse at 74% 30%,#ff8aba 0,transparent 32%),radial-gradient(ellipse at 20% 75%,#8dffe0 0,transparent 31%);opacity:.23;filter:blur(50px);animation:popWaves 17s ease-in-out infinite alternate}
+@keyframes popWaves{from{transform:translate3d(-4%,2%,0) rotate(-8deg)}to{transform:translate3d(5%,-3%,0) rotate(7deg)}}@keyframes popDotsMove{to{background-position:44px 22px}}
+.main,header,.footer-strip{position:relative;z-index:1}
+.hero h1{letter-spacing:-.065em;font-family:"HarmonyOS Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;font-weight:1000}
+.hero h1 em{font-style:normal;transform:none;display:inline-block;color:#ff4d98;-webkit-text-stroke:0;text-shadow:3px 3px 0 #fff34f;line-height:1.08;letter-spacing:-.06em}
+.hero h1 em strong,.hero h1 em i{font-weight:1000;font-style:normal}
+.hero h1 em i{color:#5c46ed;text-shadow:3px 3px 0 #ff87be}
+.lead{margin-top:18px;font-weight:900}
+.art{min-height:535px;isolation:isolate}
+.art::before{height:77%;width:91%;border-radius:22px;background:#ff6aaf;transform:rotate(9deg);box-shadow:8px 9px 0 var(--ink)}
+.art::after{height:78%;width:90%;border-radius:22px;background:#fff34f;transform:rotate(-7deg)}
+.art>.float-star,.art>.sticker,.art>.art-poster{display:none!important}
+.judge-visual{position:relative;z-index:2;width:100%;max-width:560px;transform:rotate(.5deg);filter:drop-shadow(3px 7px 0 rgba(36,22,82,.15))}
+.judge-visual svg{display:block;width:100%;height:auto;overflow:visible;animation:judgeFloat 4.5s ease-in-out infinite alternate}
+@keyframes judgeFloat{to{transform:translateY(-9px) rotate(1deg)}}
+.hero .eyebrow{background:#fff34f;transform:rotate(-1.5deg)}
+.upload-zone{transform:rotate(-.5deg);background:#fff}
+.big-button{background:linear-gradient(110deg,#fff34f 0%,#fff77a 68%,#fff34f 100%)}
+.big-button:active,.action:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.result-head h2,.cert-title{font-family:"HarmonyOS Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+.cert-center{grid-template-columns:49% minmax(0,1fr);gap:3%;margin-top:3%}
+.cert-photo{aspect-ratio:1/1.08;object-fit:cover}
+.cert-photo-wrap{transform:rotate(-3deg);box-shadow:6px 6px 0 var(--ink)}
+.country-area{align-self:center}
+.country-eyebrow{font-size:clamp(11px,1.65vw,19px);padding:9px 12px;background:#ff68af;box-shadow:4px 4px 0 var(--ink);transform:rotate(-2deg)}
+.country{font-family:"HarmonyOS Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;font-size:clamp(38px,7.9vw,84px);line-height:1.15;letter-spacing:-.135em;font-weight:1000;-webkit-text-stroke:0;text-shadow:3px 3px 0 #fff34f,5px 5px 0 #241652;margin:8% 0 6%;white-space:nowrap;overflow:visible}
+.cert-band{margin-top:3.2%}.cert-bottom{margin-top:4%}.cert-id{bottom:1%}.extras{background:#fffdf8}
+@media(min-width:831px){.hero{grid-template-columns:1.05fr .95fr;gap:25px}.art{height:565px;min-height:565px}.judge-visual{width:106%}}
+@media(max-width:830px){
+.main.hero{display:flex;flex-direction:column;align-items:stretch;gap:0;min-height:0;padding-top:3px}
+.hero-copy{display:contents}
+.hero-copy>.eyebrow{order:1;align-self:flex-start;margin:18px 0 17px;padding:7px 11px}
+.hero-copy>h1{order:2;margin:0}
+.hero-copy>.lead{order:3;margin:15px 0 5px}
+.hero>.art{order:4;align-self:center;height:235px;min-height:0;width:100%;max-width:500px;margin:3px auto 6px;display:flex;align-items:center;justify-content:center}
+.hero .art::before,.hero .art::after{display:none}
+.judge-visual{width:min(100%,360px);filter:drop-shadow(3px 5px 0 rgba(36,22,82,.12))}
+.judge-visual svg{height:230px;max-width:100%;object-fit:contain}
+.hero-copy>.upload-zone{order:5;width:100%;max-width:560px;align-self:center;margin:0;transform:none}
+.hero-copy>.sample{order:6;align-self:flex-start;margin:21px 0 0}
+.hero-copy>.privacy{order:7;margin:22px 0 0}
+.hero-copy>#fileInput{display:none}
+.cert-center{grid-template-columns:49% minmax(0,1fr);gap:3%}}
+@media(max-width:490px){
+.main.hero{padding:0 19px 28px}
+.hero-copy>.eyebrow{margin:10px 0 17px;font-size:10px}
+.hero-copy>h1{font-size:clamp(41px,11.6vw,55px);line-height:1.08}
+.hero h1 em{text-shadow:2px 3px 0 #fff34f}.hero h1 em i{text-shadow:2px 3px 0 #ff87be}
+.hero-copy>.lead{font-size:15px;margin:11px 0 6px}
+.hero>.art{height:180px;margin:3px auto 5px}
+.judge-visual{width:min(100%,300px)}
+.judge-visual svg{height:188px}
+.hero-copy>.upload-zone{padding:13px;box-shadow:6px 7px 0 var(--ink)}
+.upload-zone .zone-top{margin-bottom:9px}
+.upload-zone .big-button{padding:13px 10px;font-size:21px;box-shadow:4px 4px 0 var(--ink)}
+.upload-zone .file-note{font-size:11px;margin:11px 0 1px}
+.hero-copy>.sample{font-size:14px;margin-top:18px}
+.hero-copy>.privacy{font-size:10px;margin-top:19px}
+.cert-center{grid-template-columns:49% minmax(0,1fr);gap:3%;margin-top:3%}
+.cert-photo-wrap{padding:4px}.cert-photo{aspect-ratio:1/1.09}
+.country-eyebrow{font-size:clamp(10px,2.65vw,13px);padding:6px 5px;box-shadow:3px 3px 0 var(--ink)}
+.country{font-size:clamp(30px,9.2vw,45px);letter-spacing:-.14em;text-shadow:2px 2px 0 #fff34f,3px 3px 0 #241652;margin:8% 0 7%}
+.cert-band{margin-top:4.8%}.cert-bottom{margin-top:4%}.result-head{margin-top:5px}}
+@media(max-width:360px){.hero>.art{height:154px}.judge-visual svg{height:164px}.hero-copy>h1{font-size:40px}.cert-center{grid-template-columns:48% minmax(0,1fr)}.country{font-size:29px}}
+@media(prefers-reduced-motion:reduce){.app::before,.app::after,.judge-visual svg{animation:none!important}*{scroll-behavior:auto!important}}
+@media print{.app::after{display:none!important}.cert-photo{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
 </style>
 </head>
 <body>
@@ -31,7 +102,7 @@ header{position:relative;z-index:2;display:flex;justify-content:space-between;al
     <main class="main hero">
       <div class="hero-copy">
         <span class="eyebrow">✦ THE BUREAU HAS AN OPINION</span>
-        <h1><span>别解释。</span><em>先把照片<br>交上来。</em></h1>
+        <h1><span>别解释。</span><em><strong>先把照片</strong><br><i>交上来。</i></em></h1>
         <p class="lead">程序很严格，结论看本官心情。</p>
         <div id="dropzone" class="upload-zone">
           <div class="zone-top"><span>上传一张照片</span><b>01 / 02</b></div>
@@ -43,6 +114,25 @@ header{position:relative;z-index:2;display:flex;justify-content:space-between;al
         <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" hidden>
       </div>
       <div class="art" aria-hidden="true">
+<div class="judge-visual">
+<svg viewBox="0 0 560 470" xmlns="http://www.w3.org/2000/svg" role="presentation" preserveAspectRatio="xMidYMid meet">
+<defs><pattern id="popDots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2" fill="#241652" opacity=".17"/></pattern><linearGradient id="judgeGrad" x2="1" y2="1"><stop stop-color="#97ffce"/><stop offset=".55" stop-color="#83dfff"/><stop offset="1" stop-color="#ffa1d8"/></linearGradient></defs>
+<g transform="rotate(-3 280 230)">
+<rect x="30" y="29" width="510" height="416" rx="25" fill="#241652"/><rect x="20" y="16" width="510" height="416" rx="25" fill="url(#judgeGrad)" stroke="#241652" stroke-width="8"/><rect x="27" y="23" width="496" height="403" rx="19" fill="url(#popDots)"/>
+<path d="M20 333L530 222v91L20 425Z" fill="#fff34f" stroke="#241652" stroke-width="5"/><circle cx="86" cy="107" r="42" fill="#ff6aaf" stroke="#241652" stroke-width="6"/><path d="M86 75v64m-32-32h64" stroke="#241652" stroke-width="8" stroke-linecap="round"/>
+<path d="M433 345l19-41 19 41 41 19-41 19-19 40-19-40-41-19Z" fill="#ff6aaf" stroke="#241652" stroke-width="5"/>
+<text x="53" y="386" font-size="26" font-weight="1000" fill="#241652" font-family="sans-serif">THE BUREAU</text><text x="54" y="414" font-size="19" font-weight="900" fill="#241652" font-family="sans-serif">OF IMPRESSIONS</text>
+<path d="M175 425q-21-118 36-148 38-23 78-16 89-4 117 71l19 93" fill="#6756f6" stroke="#241652" stroke-width="8"/>
+<path d="M234 266l46 65 44-65" fill="#fffaf0" stroke="#241652" stroke-width="7"/><path d="M271 329l10-13 15 15-17 92-24-3Z" fill="#ff6aaf" stroke="#241652" stroke-width="5"/>
+<ellipse cx="281" cy="209" rx="86" ry="98" fill="#ffcea4" stroke="#241652" stroke-width="9"/><path d="M194 198q-21-123 87-124 104-7 91 124-29-12-43-45-41 28-135 45" fill="#241652"/>
+<path d="M211 210q20-9 34-1m71 0q19-8 34 0" stroke="#241652" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="237" cy="225" r="7" fill="#241652"/><circle cx="332" cy="225" r="7" fill="#241652"/><path d="M270 258q15 17 31 0" stroke="#d75882" stroke-width="7" stroke-linecap="round" fill="none"/>
+<ellipse cx="221" cy="251" rx="18" ry="9" fill="#ff87a6" opacity=".72"/><ellipse cx="350" cy="251" rx="18" ry="9" fill="#ff87a6" opacity=".72"/>
+<path d="M201 138l-13-55 91-52 102 51-15 56Z" fill="#241652" stroke="#241652" stroke-width="9"/><path d="M202 95l76-43 88 43-4 38-78 17-76-17Z" fill="#513deb" stroke="#241652" stroke-width="7"/><path d="M276 67v60" stroke="#fff34f" stroke-width="9" stroke-linecap="round"/><circle cx="277" cy="126" r="16" fill="#fff34f" stroke="#241652" stroke-width="5"/>
+<path d="M191 354l-40 71h73l31-84" fill="#4631c0" stroke="#241652" stroke-width="7"/><path d="M332 342l103-42 43 105-103 33Z" fill="#fffaf0" stroke="#241652" stroke-width="7"/><path d="M366 358l72-27m-60 51 70-27m-59 49 39-15" stroke="#241652" stroke-width="6" opacity=".6"/><path d="M340 366q26-19 45 8l-15 26q-23 16-37-5" fill="#ffcea4" stroke="#241652" stroke-width="6"/>
+<path d="M182 334l-43-94" stroke="#241652" stroke-width="19" stroke-linecap="round"/><path d="M152 280q24-16 34 5l13 46-28 21-26-35" fill="#ffcea4" stroke="#241652" stroke-width="6"/><path d="M102 196l60 123" stroke="#241652" stroke-width="14" stroke-linecap="round"/>
+<rect x="76" y="171" width="58" height="42" rx="11" transform="rotate(-21 105 192)" fill="#ff6aaf" stroke="#241652" stroke-width="6"/><rect x="64" y="144" width="83" height="31" rx="6" transform="rotate(-21 105 159)" fill="#fff34f" stroke="#241652" stroke-width="6"/>
+<g transform="rotate(6 413 102)"><path d="M354 26h140q20 0 20 20v77q0 20-20 20h-56l-21 24-7-24h-56q-20 0-20-20V46q0-20 20-20Z" fill="#fffaf0" stroke="#241652" stroke-width="6"/><text x="424" y="76" fill="#241652" font-size="29" text-anchor="middle" font-weight="1000" font-family="PingFang SC, Microsoft YaHei, sans-serif">本官先</text><text x="424" y="111" fill="#fa3f9c" font-size="29" text-anchor="middle" font-weight="1000" font-family="PingFang SC, Microsoft YaHei, sans-serif">看看。</text></g>
+</g></svg></div>
         <span class="float-star">✳</span><span class="sticker one">本官<br>已阅!</span><span class="sticker two">✦ NO.001</span>
         <div class="art-poster">
           <div class="art-heading"><span>国籍鉴定</span><span>OFFICIAL-ish / 2026</span></div>
