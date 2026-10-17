@@ -1,46 +1,83 @@
-# 国籍鉴定 · 印象签
+# 国籍鉴定 · 随机娱乐小游戏
 
-五颜六色的波普艺术展风格「国籍鉴定」恶搞网页，手机和电脑都能玩。无需后端或 API。
+上传照片或直接试玩，随机领取一份平行宇宙身份和「本官判词」，生成可保存、分享的纪念证书。照片仅作证书插图，结果由随机抽签产生，不识别或推断真实国籍。
 
-## 玩法
+[在线体验](https://parallel-passport-kai.imjusttrying341.chatgpt.site)
 
-- **呈交照片**：从设备上传 JPG、PNG 或 WebP，或选“没带照片？先审个替身。”
-- **本局结论已出**：证书显示“国籍鉴定 / 本官今日钦定 / [趣味结果] / 本官已阅，暂不接受狡辩。”
-- **申请重审**：使用同一张照片重新抽选证书。
-- **保存高清证书**：生成 1200 × 1600 PNG；另可打印 / 保存 PDF、修改昵称、换照片。
-- 证书不包含额外的随机提示、趣味角色设定或底部免责声明。
+## 功能
 
-所有照片都在浏览器本地处理，不传给服务器。国籍结果由随机函数生成，**不识别照片人物的真实国籍**。
+- 手机优先的两页操作：上传或试玩，然后查看、编辑、保存结果。
+- 六个随机目的地：日本、意大利、法国、冰岛、新西兰、瑞士。默认日本概率为 70%，其余五个平分剩余概率；可在编辑面板调整下次抽签概率。
+- 24 组随机称号、趣味判词与今日特权，连续两次抽签不重复，与目的地分别抽取。
+- 下载 1200 × 1600 PNG、打印或另存为 PDF，以及浏览器系统分享或复制文案。
+- 内置 Q 版钟馗插画和中文字体，不需要后端、账号、数据库或 API 密钥。
 
 ## 本地运行
 
-这是一个**单文件静态网站**。下载 `index.html` 后用现代浏览器直接打开，或在项目根目录使用：
+安装 Node.js 24 或更新版本，在仓库目录执行：
 
 ```sh
-python3 -m http.server 8000
+npm start
 ```
 
-浏览器访问 http://localhost:8000。
+然后打开 [http://127.0.0.1:4173](http://127.0.0.1:4173)。该命令直接预览 `dist/` 源码，不需要先安装测试依赖。不要直接双击 HTML 文件；浏览器需要通过网页服务加载这些 JavaScript 模块。
 
-## GitHub Pages 公开部署
+如需修改端口，可设置环境变量 `PORT`。本地服务仅监听本机地址。
 
-自动部署脚本已经放在 `.github/workflows/pages.yml`。要启用公开访问：
+## 修改与构建
 
-1. 打开本仓库 **Settings → General → Danger Zone → Change repository visibility → Public**，确认公开（请确保没有不想公开的文件）。
-2. 打开 **Settings → Pages → Build and deployment → Source**，选择 **GitHub Actions**。
-3. 到 **Actions** 页面运行或重新运行 `Deploy Nationality Check to GitHub Pages` 工作流（`Run workflow` / `Re-run jobs`）。
-4. 工作流成功后网页应位于：**https://kai-da-wang.github.io/nationality-check/**。
+所有游戏源码位于 `dist/`。修改完成后运行：
 
-此链接仅在 Pages 部署成功后可访问；代码推送本身不意味着网页已经公开。
-
-## 文件结构
-
-```text
-index.html                     网页本体（CSS 与 JavaScript 均内嵌）
-.github/workflows/pages.yml    GitHub Pages 自动部署
-README.md                      项目说明
+```sh
+npm run build
 ```
 
-## 说明
+构建使用 Node.js 自带功能，将可发布的网页整理为根目录 `index.html` 和 `assets/`，没有额外打包工具。该命令可重复运行，不会递归清空目录，已有的 `assets/judge.webp` 等其他资源会保留。
 
-这是一款娱乐性角色证书生成器，非官方国籍鉴定服务；人物照片不会用于推断真实种族、民族或国籍。
+根目录的 `index.html`、`assets/` 中与 `dist/` 对应的文件是生成文件；请优先修改 `dist/`，然后重新构建。这样可继续使用仓库原有的 GitHub Pages 工作流：发布根目录的 `index.html` 与 `assets/`，无需调整工作流。
+
+## 自动测试
+
+安装开发依赖后运行测试：
+
+```sh
+npm install
+npm test
+```
+
+唯一的开发依赖是 `@napi-rs/canvas`，用于验证证书图片绘制；游戏在浏览器运行时不需要这个包。
+
+测试覆盖随机权重、上海日期切换、每日签确定性、本地记录清洗、收藏计数、判词不连续重复、分享文案、证书绘制，以及上传、生成、编辑、保存和返回流程。
+
+## 文件说明
+
+| 路径 | 用途 |
+| --- | --- |
+| `dist/index.html`、`dist/styles.css` | 页面结构和样式 |
+| `dist/app.js` | 上传、抽签、编辑、下载与分享 |
+| `dist/lottery.js` | 国家数据和抽签规则 |
+| `dist/verdicts.js` | 24 组判词及抽取规则 |
+| `dist/game.js` | 本地进度、日期、每日签与分享文案 |
+| `dist/certificate.js` | 纪念证书绘制 |
+| `dist/assets/zhongkui-judge.png` | 钟馗插画 |
+| `dist/fonts/` | 中文字体及字体授权说明 |
+| `tests/` | 自动测试 |
+| `scripts/serve.mjs` | 本地网页预览 |
+| `scripts/build.mjs` | 生成根目录网页和资源 |
+| `index.html`、`assets/` | GitHub Pages 发布文件 |
+
+## 隐私与抽签说明
+
+照片只在浏览器内存中处理，不上传服务器、不写入长期存储；刷新页面或返回首页后需要重新选图。昵称也不写入长期存储。
+
+浏览器本地只保存随机设备标识、解锁的国家代码、抽签次数和每日签日期与编号，不跨设备同步。禁止本地保存时仍可游玩，但刷新后进度可能消失。项目没有登录、行为分析或运行时 API 调用。
+
+每日签相关逻辑保留在源码中；当前首页默认自由抽签，不提供模式切换入口。下载、系统分享与打印的支持情况由浏览器决定。
+
+## 重新部署到其他地址
+
+当前网页及分享文案指向上面的在线体验站点。更换域名时，请更新 `dist/index.html` 的 `og:url` 和 `canonical`、`dist/game.js` 的 `SITE_URL`、`dist/app.js` 的邀请地址，以及 `tests/game.test.mjs` 对应的链接检查，再运行构建。
+
+## 素材说明
+
+钟馗插画为本项目使用 AI 生成的装饰素材。内置字体来源于 Noto Sans SC，随项目分发的名称为 Parallel Sans，采用 SIL Open Font License 1.1；说明见 `dist/fonts/OFL.txt`。分发字体时请保留该文件；构建也会将其复制到 `assets/fonts/OFL.txt`。

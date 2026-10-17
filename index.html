@@ -1,400 +1,67 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#20165e">
-<title>国籍鉴定 · 印象签</title>
-<meta name="description" content="呈交照片，本官当场盖章。撞色艺术展风格的趣味国籍证书生成器。">
-<style>
-:root{--ink:#20165e;--cream:#fffaf0;--pink:#ff6aaf;--acid:#fff34f;--blue:#4d5dff;--mint:#84ffd0;--violet:#a88dff;--line:3px solid var(--ink)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Arial Black","PingFang SC","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:#eae5fa;-webkit-font-smoothing:antialiased}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:4px solid #ff4d9a;outline-offset:4px}button:disabled{opacity:.6;cursor:progress}[hidden]{display:none!important}
-.app{min-height:100dvh;overflow:hidden;position:relative;background:radial-gradient(circle at 96% 4%,#ff86b9 0 11%,transparent 24%),radial-gradient(circle at 2% 85%,#9bffda 0 12%,transparent 27%),#efeafc}.app:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;background-image:radial-gradient(#211258 1.2px,transparent 1.2px);background-size:22px 22px}
-header{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;max-width:1120px;margin:auto;padding:22px 20px 14px}.brand{display:inline-flex;align-items:center;gap:11px;font-weight:1000;letter-spacing:.05em;font-size:19px}.seal{display:grid;place-items:center;width:43px;height:43px;background:var(--acid);border:var(--line);border-radius:50%;box-shadow:4px 4px 0 var(--ink);transform:rotate(-13deg);font-size:24px}.edition{border:2px solid var(--ink);background:var(--mint);padding:7px 11px;font-size:11px;font-weight:900;letter-spacing:.11em;transform:rotate(3deg)}.main{max-width:1120px;margin:auto;padding:15px 20px 65px;position:relative;z-index:1}
-.hero{display:grid;grid-template-columns:1.07fr .93fr;align-items:center;gap:35px;min-height:660px}.eyebrow{display:inline-block;border:var(--line);background:var(--acid);padding:8px 13px;box-shadow:5px 5px 0 var(--ink);font-weight:1000;font-size:12px;letter-spacing:.12em;transform:rotate(-2deg);margin-bottom:25px}.hero h1{font-size:clamp(53px,6.4vw,90px);line-height:1.13;letter-spacing:-.055em;margin:0 0 18px;font-weight:1000}.hero h1 span{display:block}.hero h1 em{display:inline-block;font-style:normal;color:#fff;-webkit-text-stroke:2px var(--ink);text-shadow:5px 5px 0 var(--ink),8px 8px 0 var(--pink);transform:rotate(-2deg)}.lead{font-size:clamp(15px,1.65vw,20px);font-weight:800;margin:24px 0}.upload-zone{max-width:490px;position:relative;border:var(--line);background:#fff;padding:16px;box-shadow:10px 10px 0 var(--ink);transform:rotate(-1deg);margin:34px 11px 0 0}.upload-zone.drag{background:var(--mint)}.zone-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:900;margin-bottom:13px}.zone-top b{background:var(--pink);padding:5px 8px;border:2px solid var(--ink)}.big-button{width:100%;border:var(--line);background:var(--acid);color:var(--ink);font-size:24px;font-weight:1000;padding:18px 16px;box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s}.big-button:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}.file-note{display:block;font-size:12px;text-align:center;margin:13px 0 2px;font-weight:800}.sample{border:0;background:transparent;margin:22px 0 0 0;padding:4px 2px;font-size:15px;font-weight:1000;color:var(--ink);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:5px}.sample:hover{color:#f34193}.privacy{font-size:11px;margin-top:25px;font-weight:750;opacity:.7;line-height:1.7}.art{position:relative;min-height:600px;display:flex;align-items:center;justify-content:center;isolation:isolate}.art:before{content:"";width:94%;height:87%;position:absolute;background:#7860ff;border:var(--line);transform:rotate(9deg);box-shadow:14px 14px 0 var(--ink);z-index:-2}.art:after{content:"";width:93%;height:90%;position:absolute;background:var(--pink);border:var(--line);transform:rotate(-8deg);z-index:-1}.art-poster{width:89%;padding:25px;background:var(--acid);border:var(--line);transform:rotate(2deg);box-shadow:11px 13px 0 var(--ink)}.art-heading{display:flex;justify-content:space-between;font-weight:1000;border-bottom:3px solid var(--ink);padding-bottom:12px}.art-portrait{height:330px;overflow:hidden;border:var(--line);background:#91d9e6;margin-top:17px}.art-portrait svg{height:100%;width:100%;display:block}.art-footer{font-size:clamp(39px,5vw,67px);letter-spacing:-.07em;line-height:1.1;margin-top:10px;font-weight:1000}.art-footer span{color:#f63891;-webkit-text-stroke:2px var(--ink)}.sticker{position:absolute;z-index:2;display:grid;place-items:center;font-weight:1000}.sticker.one{right:-6px;top:67px;background:var(--mint);width:104px;height:104px;border-radius:50%;border:var(--line);box-shadow:6px 7px 0 var(--ink);transform:rotate(18deg);font-size:20px}.sticker.two{left:-10px;bottom:74px;background:#fff;border:var(--line);padding:12px;font-size:24px;transform:rotate(-14deg);box-shadow:6px 6px 0 var(--ink)}.float-star{position:absolute;left:-12px;top:66px;color:var(--acid);font-size:86px;-webkit-text-stroke:3px var(--ink);transform:rotate(-25deg);z-index:3}.footer-strip{max-width:1120px;margin:0 auto 45px;padding:0 20px;display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:900;letter-spacing:.08em;opacity:.75}
-.result-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:12px auto 25px;max-width:780px}.result-head h2{font-size:clamp(30px,5vw,51px);margin:6px 0 0;letter-spacing:-.07em;line-height:1.1}.result-head small{font-weight:1000;letter-spacing:.18em}.result-head .ticket{background:var(--mint);border:var(--line);padding:12px 10px;transform:rotate(6deg);box-shadow:5px 5px 0 var(--ink);font-size:12px;font-weight:1000}
-.cert{width:min(100%,660px);aspect-ratio:3/4;background:var(--cream);border:4px solid var(--ink);box-shadow:13px 14px 0 var(--ink);position:relative;margin:0 auto;overflow:hidden;isolation:isolate}.cert:before{content:"";position:absolute;inset:0;opacity:.16;background-image:radial-gradient(var(--ink) .9px,transparent .9px);background-size:13px 13px;pointer-events:none}.cert-shape1{position:absolute;right:-12%;top:6%;width:55%;height:28%;transform:rotate(-30deg);background:var(--mint);border:3px solid var(--ink);z-index:-1}.cert-shape2{position:absolute;left:-22%;bottom:1%;width:72%;height:21%;transform:rotate(-15deg);background:var(--pink);border:3px solid var(--ink);z-index:-1}.cert-upper{display:flex;justify-content:space-between;align-items:flex-start;padding:5% 6% 2%;font-weight:1000}.cert-serial{font-size:clamp(9px,1.5vw,13px);line-height:1.6;letter-spacing:.1em}.cert-mark{border:3px solid var(--ink);border-radius:50%;background:var(--acid);width:64px;height:64px;display:grid;place-items:center;font-size:34px;transform:rotate(-12deg)}.cert-title{margin:0 6%;font-weight:1000;font-size:clamp(43px,7.5vw,84px);line-height:1.04;letter-spacing:-.09em}.cert-english{font-size:clamp(9px,1.5vw,14px);letter-spacing:.13em;font-weight:1000;border-top:3px solid var(--ink);padding-top:8px;margin:6px 6% 0}.cert-center{display:grid;grid-template-columns:44% 1fr;gap:3%;align-items:center;margin:4% 6% 0}.cert-photo-wrap{position:relative;transform:rotate(-5deg);border:3px solid var(--ink);padding:8px;background:#fff;box-shadow:5px 5px 0 var(--ink);min-width:0}.cert-photo{aspect-ratio:1/1.13;width:100%;object-fit:cover;background:#d0d2fb;display:block;border:2px solid var(--ink)}.photo-label{font-weight:1000;font-size:clamp(8px,1.4vw,12px);margin:9px 1px 2px;white-space:nowrap}.country-area{min-width:0}.country-eyebrow{display:inline-block;background:var(--pink);border:2px solid var(--ink);padding:6px 8px;font-size:clamp(9px,1.3vw,13px);font-weight:1000;transform:rotate(3deg)}.country{font-size:clamp(45px,9vw,90px);font-weight:1000;line-height:1.1;letter-spacing:-.11em;margin:7% 0 3%;color:var(--blue);-webkit-text-stroke:1.5px var(--ink);text-shadow:4px 4px 0 var(--acid),7px 7px 0 var(--ink);overflow-wrap:anywhere}.country-roman{font-size:clamp(9px,1.5vw,16px);font-weight:1000;letter-spacing:.1em}.cert-band{position:relative;background:var(--acid);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);margin:5% -3% 0;padding:3% 8%;transform:rotate(-3deg);font-weight:1000;font-size:clamp(13px,2.9vw,27px);text-align:center;letter-spacing:-.03em}.cert-bottom{display:flex;justify-content:space-between;align-items:end;gap:8px;margin:4% 6% 0;font-weight:1000}.cert-bottom .nameplate{font-size:clamp(11px,1.7vw,17px);padding:8px 11px;background:#fff;border:2px solid var(--ink);max-width:65%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.cert-bottom .approved{font-weight:1000;font-size:clamp(12px,2.6vw,23px);color:#ed2b89;transform:rotate(-13deg);border:3px dashed #ed2b89;padding:6px}.cert-id{position:absolute;right:6%;bottom:1.5%;font-size:clamp(7px,1.2vw,11px);font-weight:1000;letter-spacing:.08em}
-.actions{width:min(100%,660px);margin:38px auto 0;display:grid;grid-template-columns:1.05fr .95fr;gap:13px}.action{border:var(--line);min-height:58px;padding:12px 8px;font-size:17px;font-weight:1000;box-shadow:5px 5px 0 var(--ink);transition:transform .15s}.action:hover{transform:translate(2px,2px)}.action.primary{background:var(--acid)}.action.secondary{background:#fff}.extras{max-width:660px;margin:28px auto 0;background:#fff;border:var(--line);padding:17px;box-shadow:5px 5px 0 var(--ink)}.extras summary{font-weight:1000;cursor:pointer}.extra-row{display:flex;gap:10px;margin-top:14px;align-items:center}.extra-row label{font-size:14px;font-weight:900;white-space:nowrap}.extra-row input{border:2px solid var(--ink);background:var(--cream);padding:10px;width:100%;min-width:0}.mini-btn{border:2px solid var(--ink);background:var(--mint);font-weight:1000;padding:10px 12px;white-space:nowrap}.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:white;border:3px solid white;padding:12px 20px;font-weight:900;z-index:50;box-shadow:5px 5px 0 #ff68aa;max-width:90%;text-align:center}.loading-note{font-size:13px;margin:14px 0;text-align:center}.screen-result .main{padding-bottom:80px}
-@media(max-width:830px){header{padding:17px 17px 12px}.main{padding:7px 20px 42px}.hero{display:flex;flex-direction:column;gap:20px;min-height:unset}.hero-copy{width:100%;padding-top:28px}.hero h1{font-size:clamp(49px,11vw,78px)}.art{width:min(95%,510px);min-height:560px;margin:25px auto}.art-poster{width:85%}.footer-strip{padding:0 20px;margin-bottom:22px}.sticker.one{right:-10px}.cert{max-width:600px}}
-@media(max-width:490px){.edition{font-size:9px;padding:7px}.brand{font-size:16px}.seal{width:38px;height:38px;font-size:21px}.eyebrow{font-size:10px}.hero h1{font-size:clamp(45px,12vw,67px)}.hero h1 em{-webkit-text-stroke:1.5px var(--ink);text-shadow:3px 4px 0 var(--ink),6px 6px 0 var(--pink)}.lead{font-size:16px}.upload-zone{margin-top:27px;box-shadow:7px 7px 0 var(--ink)}.big-button{font-size:21px}.art{min-height:390px;margin:20px auto}.art-poster{padding:15px}.art-portrait{height:218px}.sticker.one{width:74px;height:74px;font-size:15px;top:27px}.sticker.two{font-size:17px;bottom:28px}.float-star{font-size:55px}.art-footer{font-size:43px}.footer-strip{font-size:9px}.cert{border-width:3px;box-shadow:7px 8px 0 var(--ink)}.cert-upper{padding-top:4%}.cert-mark{width:43px;height:43px;font-size:25px;border-width:2px}.cert-title{font-size:clamp(43px,11.5vw,64px)}.cert-english{border-top-width:2px}.cert-center{grid-template-columns:44% 1fr;margin-top:6%}.cert-photo-wrap{padding:4px;border-width:2px;box-shadow:4px 4px 0 var(--ink)}.cert-photo{border-width:1px}.country{font-size:clamp(36px,10vw,61px);text-shadow:2px 3px 0 var(--acid),4px 5px 0 var(--ink)}.country-eyebrow{padding:4px;font-size:9px}.cert-band{margin-top:6%}.cert-bottom{margin-top:5%}.actions{margin-top:25px}.action{font-size:15px;min-height:56px}.extra-row{flex-wrap:wrap}.extra-row label{width:100%}}
-@media(prefers-reduced-motion:no-preference){.seal{animation:turn 4s ease-in-out infinite alternate}.float-star{animation:float 3s ease-in-out infinite alternate}@keyframes turn{to{transform:rotate(5deg)}}@keyframes float{to{transform:translateY(-17px) rotate(-14deg)}}}
-@media print{@page{size:portrait;margin:0}html,body,.app{background:white!important}.app:before,header,.result-head,.actions,.extras,.footer-strip,.toast,.screen-home{display:none!important}.main{padding:0!important;max-width:none!important}.screen-result,.cert{display:block!important}.cert{width:100vw;height:133.333vw;max-height:100vh;aspect-ratio:3/4;box-shadow:none!important;border-width:2px;print-color-adjust:exact;-webkit-print-color-adjust:exact}body{overflow:hidden}}
-
-/* IMPRESSION_POP_V2 */
-:root{--ink:#241652;--cream:#fffaf0;--pink:#ff61aa;--acid:#fff34f;--blue:#514af4;--mint:#84ffd0}
-.app{background:radial-gradient(circle at 88% 9%,#ff82c4 0%,transparent 30%),radial-gradient(circle at 0% 80%,#9effd7 0%,transparent 31%),radial-gradient(circle at 65% 65%,#c6bdff 0%,transparent 32%),#efebff;isolation:isolate}
-.app::before{animation:popDotsMove 25s linear infinite}
-.app::after{content:"";position:absolute;z-index:0;inset:-15% -30%;pointer-events:none;background:radial-gradient(ellipse at 74% 30%,#ff8aba 0,transparent 32%),radial-gradient(ellipse at 20% 75%,#8dffe0 0,transparent 31%);opacity:.23;filter:blur(50px);animation:popWaves 17s ease-in-out infinite alternate}
-@keyframes popWaves{from{transform:translate3d(-4%,2%,0) rotate(-8deg)}to{transform:translate3d(5%,-3%,0) rotate(7deg)}}@keyframes popDotsMove{to{background-position:44px 22px}}
-.main,header,.footer-strip{position:relative;z-index:1}
-.hero h1{letter-spacing:-.065em;font-family:"HarmonyOS Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;font-weight:1000}
-.hero h1 em{font-style:normal;transform:none;display:inline-block;color:#ff4d98;-webkit-text-stroke:0;text-shadow:3px 3px 0 #fff34f;line-height:1.08;letter-spacing:-.06em}
-.hero h1 em strong,.hero h1 em i{font-weight:1000;font-style:normal}
-.hero h1 em i{color:#5c46ed;text-shadow:3px 3px 0 #ff87be}
-.lead{margin-top:18px;font-weight:900}
-.art{min-height:535px;isolation:isolate}
-.art::before{height:77%;width:91%;border-radius:22px;background:#ff6aaf;transform:rotate(9deg);box-shadow:8px 9px 0 var(--ink)}
-.art::after{height:78%;width:90%;border-radius:22px;background:#fff34f;transform:rotate(-7deg)}
-.art>.float-star,.art>.sticker,.art>.art-poster{display:none!important}
-.judge-visual{position:relative;z-index:2;width:100%;max-width:560px;transform:rotate(.5deg);filter:drop-shadow(3px 7px 0 rgba(36,22,82,.15))}
-.judge-visual svg{display:block;width:100%;height:auto;overflow:visible;animation:judgeFloat 4.5s ease-in-out infinite alternate}
-@keyframes judgeFloat{to{transform:translateY(-9px) rotate(1deg)}}
-.hero .eyebrow{background:#fff34f;transform:rotate(-1.5deg)}
-.upload-zone{transform:rotate(-.5deg);background:#fff}
-.big-button{background:linear-gradient(110deg,#fff34f 0%,#fff77a 68%,#fff34f 100%)}
-.big-button:active,.action:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
-.result-head h2,.cert-title{font-family:"HarmonyOS Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
-.cert-center{grid-template-columns:49% minmax(0,1fr);gap:3%;margin-top:3%}
-.cert-photo{aspect-ratio:1/1.08;object-fit:cover}
-.cert-photo-wrap{transform:rotate(-3deg);box-shadow:6px 6px 0 var(--ink)}
-.country-area{align-self:center}
-.country-eyebrow{font-size:clamp(11px,1.65vw,19px);padding:9px 12px;background:#ff68af;box-shadow:4px 4px 0 var(--ink);transform:rotate(-2deg)}
-.country{font-family:"HarmonyOS Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;font-size:clamp(38px,7.9vw,84px);line-height:1.15;letter-spacing:-.135em;font-weight:1000;-webkit-text-stroke:0;text-shadow:3px 3px 0 #fff34f,5px 5px 0 #241652;margin:8% 0 6%;white-space:nowrap;overflow:visible}
-.cert-band{margin-top:3.2%}.cert-bottom{margin-top:4%}.cert-id{bottom:1%}.extras{background:#fffdf8}
-@media(min-width:831px){.hero{grid-template-columns:1.05fr .95fr;gap:25px}.art{height:565px;min-height:565px}.judge-visual{width:106%}}
-@media(max-width:830px){
-.main.hero{display:flex;flex-direction:column;align-items:stretch;gap:0;min-height:0;padding-top:3px}
-.hero-copy{display:contents}
-.hero-copy>.eyebrow{order:1;align-self:flex-start;margin:18px 0 17px;padding:7px 11px}
-.hero-copy>h1{order:2;margin:0}
-.hero-copy>.lead{order:3;margin:15px 0 5px}
-.hero>.art{order:4;align-self:center;height:235px;min-height:0;width:100%;max-width:500px;margin:3px auto 6px;display:flex;align-items:center;justify-content:center}
-.hero .art::before,.hero .art::after{display:none}
-.judge-visual{width:min(100%,360px);filter:drop-shadow(3px 5px 0 rgba(36,22,82,.12))}
-.judge-visual svg{height:230px;max-width:100%;object-fit:contain}
-.hero-copy>.upload-zone{order:5;width:100%;max-width:560px;align-self:center;margin:0;transform:none}
-.hero-copy>.sample{order:6;align-self:flex-start;margin:21px 0 0}
-.hero-copy>.privacy{order:7;margin:22px 0 0}
-.hero-copy>#fileInput{display:none}
-.cert-center{grid-template-columns:49% minmax(0,1fr);gap:3%}}
-@media(max-width:490px){
-.main.hero{padding:0 19px 28px}
-.hero-copy>.eyebrow{margin:10px 0 17px;font-size:10px}
-.hero-copy>h1{font-size:clamp(41px,11.6vw,55px);line-height:1.08}
-.hero h1 em{text-shadow:2px 3px 0 #fff34f}.hero h1 em i{text-shadow:2px 3px 0 #ff87be}
-.hero-copy>.lead{font-size:15px;margin:11px 0 6px}
-.hero>.art{height:180px;margin:3px auto 5px}
-.judge-visual{width:min(100%,300px)}
-.judge-visual svg{height:188px}
-.hero-copy>.upload-zone{padding:13px;box-shadow:6px 7px 0 var(--ink)}
-.upload-zone .zone-top{margin-bottom:9px}
-.upload-zone .big-button{padding:13px 10px;font-size:21px;box-shadow:4px 4px 0 var(--ink)}
-.upload-zone .file-note{font-size:11px;margin:11px 0 1px}
-.hero-copy>.sample{font-size:14px;margin-top:18px}
-.hero-copy>.privacy{font-size:10px;margin-top:19px}
-.cert-center{grid-template-columns:49% minmax(0,1fr);gap:3%;margin-top:3%}
-.cert-photo-wrap{padding:4px}.cert-photo{aspect-ratio:1/1.09}
-.country-eyebrow{font-size:clamp(10px,2.65vw,13px);padding:6px 5px;box-shadow:3px 3px 0 var(--ink)}
-.country{font-size:clamp(30px,9.2vw,45px);letter-spacing:-.14em;text-shadow:2px 2px 0 #fff34f,3px 3px 0 #241652;margin:8% 0 7%}
-.cert-band{margin-top:4.8%}.cert-bottom{margin-top:4%}.result-head{margin-top:5px}}
-@media(max-width:360px){.hero>.art{height:154px}.judge-visual svg{height:164px}.hero-copy>h1{font-size:40px}.cert-center{grid-template-columns:48% minmax(0,1fr)}.country{font-size:29px}}
-@media(prefers-reduced-motion:reduce){.app::before,.app::after,.judge-visual svg{animation:none!important}*{scroll-behavior:auto!important}}
-@media print{.app::after{display:none!important}.cert-photo{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
-
-/* Mascot edition: the original hand-drawn chibi Zhong Kui judge. */
-.judge-visual{width:min(100%,455px);max-width:455px;height:525px;transform:none;filter:none;display:flex;align-items:center;justify-content:center}
-.judge-graphic{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;isolation:isolate}
-.judge-graphic::before{content:"";position:absolute;z-index:-1;left:5%;top:10%;width:90%;height:75%;border-radius:51% 43% 50% 46%;border:6px solid var(--ink);box-shadow:10px 11px 0 var(--ink);background:conic-gradient(from -20deg,#84ffd0 0 18%,#ff6aaf 18% 35%,#fff34f 35% 54%,#a88dff 54% 73%,#84ffd0 73% 100%);transform:rotate(-13deg)}
-.judge-graphic::after{content:"✦";position:absolute;color:var(--acid);-webkit-text-stroke:3px var(--ink);font-size:80px;font-weight:1000;top:0;left:-4%;transform:rotate(-12deg)}
-.judge-mascot{position:relative;z-index:2;display:block;width:100%;max-width:440px;height:auto;object-fit:contain;filter:drop-shadow(5px 7px 0 rgba(36,22,82,.24));animation:mascotHover 3.8s ease-in-out infinite alternate}
-.judge-pop-seal{position:absolute;z-index:3;right:-8%;bottom:14%;display:grid;place-items:center;text-align:center;width:100px;height:100px;border:4px solid var(--ink);border-radius:50%;background:var(--acid);box-shadow:6px 6px 0 var(--ink);color:var(--ink);font-size:20px;font-weight:1000;transform:rotate(14deg);line-height:1.25}
-@keyframes mascotHover{from{translate:0 0}to{translate:0 -10px}}
-@media(min-width:831px){.art{height:570px;min-height:570px}.judge-visual{height:525px;width:min(100%,455px)}}
-@media(max-width:830px){
-.hero>.art{height:235px;min-height:235px;overflow:hidden;max-width:500px;margin:1px auto 8px}
-.judge-visual{width:340px;max-width:100%;height:235px;overflow:hidden}
-.judge-graphic{height:235px;align-items:flex-start;overflow:hidden;mask-image:linear-gradient(#000 82%,transparent 100%);-webkit-mask-image:linear-gradient(#000 82%,transparent 100%)}
-.judge-graphic::before{height:220px;width:270px;top:28px;left:50%;margin-left:-135px;border-width:4px;box-shadow:6px 6px 0 var(--ink)}
-.judge-graphic::after{font-size:48px;left:4%;top:9px;-webkit-text-stroke:2px var(--ink)}
-.judge-mascot{width:295px;max-width:none;height:auto;margin-top:-12px}
-.judge-pop-seal{width:68px;height:68px;right:5%;bottom:30px;font-size:14px;border-width:3px;box-shadow:4px 4px 0 var(--ink)}
-}
-@media(max-width:490px){
-.hero>.art{height:203px;margin:1px auto 7px}
-.judge-visual,.judge-graphic{height:203px}
-.judge-mascot{width:255px;margin-top:-8px}
-.judge-graphic::before{width:230px;height:177px;top:24px;margin-left:-115px}
-.judge-pop-seal{width:60px;height:60px;font-size:12px;bottom:17px;right:9%}
-}
-@media(max-width:360px){
-.hero>.art,.judge-visual,.judge-graphic{height:178px}
-.judge-mascot{width:230px}
-.judge-graphic::before{height:163px;width:215px;margin-left:-108px}
-.judge-pop-seal{width:54px;height:54px;right:3%;bottom:20px;font-size:11px}
-}
-@media(prefers-reduced-motion:reduce){.judge-mascot{animation:none!important}}
-
-/* V3 · A real single-screen mobile homepage: all important actions are visible without scrolling. */
-@media screen and (max-width: 830px) and (orientation: portrait) {
-  .app > header { min-height:52px; padding:8px 16px 5px; align-items:center; }
-  .app > header .brand { gap:8px; font-size:15px; }
-  .app > header .seal { width:34px; height:34px; font-size:19px; box-shadow:3px 3px 0 var(--ink); border-width:2px; }
-  .app > header .edition { font-size:9px; padding:5px 7px; }
-  #homeScreen { display:flex; flex-direction:column; min-height:calc(100dvh - 52px); }
-  #homeScreen > .main.hero {
-    box-sizing:border-box; display:flex; flex:1 0 auto; flex-direction:column; align-items:stretch;
-    justify-content:space-between; gap:0; width:100%; max-width:550px;
-    min-height:calc(100dvh - 52px); margin:0 auto; padding:3px 18px 10px;
-  }
-  #homeScreen .hero-copy { display:contents; }
-  #homeScreen .hero-copy > .eyebrow {
-    order:1; align-self:flex-start; margin:0; padding:5px 8px;
-    font-size:10px; line-height:1.15; border-width:2px; box-shadow:3px 3px 0 var(--ink);
-  }
-  #homeScreen .hero-copy > h1 {
-    order:2; margin:0; font-size:clamp(37px,10.9vw,49px); line-height:1.04;
-    letter-spacing:-.068em;
-  }
-  #homeScreen .hero-copy > h1 em { text-shadow:2px 3px 0 #fff34f; }
-  #homeScreen .hero-copy > .lead {
-    order:3; margin:0; font-size:clamp(12px,3.45vw,15px);
-    font-weight:900; line-height:1.28;
-  }
-  #homeScreen .hero > .art {
-    order:4; align-self:center; width:100%; max-width:440px;
-    height:clamp(128px,22dvh,185px); min-height:0; margin:0; padding:0;
-    display:flex; justify-content:center; align-items:center; overflow:visible;
-  }
-  #homeScreen .hero .art::before,#homeScreen .hero .art::after { display:none; }
-  #homeScreen .judge-visual {
-    height:100%; width:min(100%,340px); max-width:340px; display:flex;
-    align-items:center; justify-content:center; overflow:visible;
-    transform:none; filter:none;
-  }
-  #homeScreen .judge-graphic {
-    height:100%; width:100%; display:flex; align-items:center; justify-content:center;
-    overflow:visible; mask-image:none; -webkit-mask-image:none;
-  }
-  #homeScreen .judge-graphic::before {
-    top:13%; left:50%; width:min(51vw,195px); height:73%; margin:0;
-    transform:translateX(-50%) rotate(-12deg); border-width:4px;
-    box-shadow:5px 5px 0 var(--ink);
-  }
-  #homeScreen .judge-graphic::after { font-size:44px; top:3%; left:12%; }
-  #homeScreen .judge-mascot {
-    display:block; flex:none; width:auto!important; max-width:85%!important;
-    height:97%!important; object-fit:contain; margin:0!important;
-    filter:drop-shadow(3px 4px 0 rgba(36,22,82,.2));
-  }
-  #homeScreen .judge-pop-seal {
-    right:calc(50% - min(30vw,114px)); bottom:9%;
-    width:54px; height:54px; font-size:12px; border-width:3px;
-    box-shadow:3px 4px 0 var(--ink);
-  }
-  #homeScreen .hero-copy > .upload-zone {
-    order:5; align-self:center; box-sizing:border-box; width:100%; max-width:550px;
-    padding:9px 11px 8px; margin:0; transform:none;
-    border-width:3px; box-shadow:5px 5px 0 var(--ink);
-  }
-  #homeScreen .upload-zone .zone-top { font-size:11px; line-height:1.2; margin:0 0 5px; }
-  #homeScreen .zone-top b { padding:4px 6px; }
-  #homeScreen .upload-zone .big-button {
-    padding:10px 8px; font-size:19px; line-height:1.25;
-    border-width:3px; box-shadow:3px 3px 0 var(--ink);
-  }
-  #homeScreen .upload-zone .file-note {
-    font-size:10px; line-height:1.3; margin:7px 0 0;
-  }
-  #homeScreen .hero-copy > .sample {
-    order:6; align-self:flex-start; margin:0; padding:0;
-    font-size:13px; line-height:1.4; text-decoration-thickness:2px;
-  }
-  #homeScreen .hero-copy > .privacy {
-    order:7; margin:0; font-size:9px; line-height:1.4; opacity:.76;
-  }
-  #homeScreen > .footer-strip { display:none!important; }
-}
-@media screen and (max-width: 830px) and (orientation: portrait) and (max-height: 680px) {
-  .app > header { min-height:46px; padding-top:5px; padding-bottom:3px; }
-  #homeScreen,#homeScreen > .main.hero { min-height:calc(100dvh - 46px); }
-  #homeScreen > .main.hero { padding-top:1px; padding-bottom:6px; }
-  #homeScreen .hero-copy > .eyebrow { font-size:9px; padding:4px 6px; }
-  #homeScreen .hero-copy > h1 { font-size:clamp(33px,10vw,43px); line-height:1.02; }
-  #homeScreen .hero-copy > .lead { font-size:12px; }
-  #homeScreen .hero > .art { height:clamp(100px,18dvh,136px); }
-  #homeScreen .hero-copy > .upload-zone { padding:7px 9px 6px; }
-  #homeScreen .upload-zone .big-button { padding:8px; font-size:17px; }
-  #homeScreen .upload-zone .file-note { margin-top:5px; }
-  #homeScreen .hero-copy > .privacy { font-size:8px; }
-}
-@media screen and (max-width: 830px) and (orientation: portrait) and (max-height: 560px) {
-  #homeScreen .hero > .art { height:94px; }
-  #homeScreen .hero-copy > h1 { font-size:32px; line-height:1; }
-  #homeScreen .hero-copy > .eyebrow { padding:3px 5px; }
-  #homeScreen .hero-copy > .sample { font-size:11px; }
-  #homeScreen .hero-copy > .privacy { font-size:8px; line-height:1.2; }
-}
-
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#fff04d">
+  <meta name="description" content="上传照片，随机领取一份国籍鉴定风格的娱乐文书。照片仅在本机处理，结果与真实国籍无关。">
+  <meta property="og:title" content="国籍鉴定 · 随机娱乐测试">
+  <meta property="og:description" content="别解释。先把照片交上来。程序很严格，结论看本官心情。">
+  <meta property="og:url" content="https://parallel-passport-kai.imjusttrying341.chatgpt.site">
+  <link rel="canonical" href="https://parallel-passport-kai.imjusttrying341.chatgpt.site">
+  <title>国籍鉴定 · 随机娱乐测试</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect rx='16' width='64' height='64' fill='%23232e3c'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23f4f2eb' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23f4f2eb'/%3E%3C/svg%3E">
+  <link rel="preload" href="assets/fonts/parallel-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/styles.css?v=8">
+  <script type="module" src="assets/app.js?v=9"></script>
 </head>
 <body>
-<div class="app" id="app">
-  <header>
-    <div class="brand"><span class="seal">印</span><span>印象签 <small style="font-size:10px;letter-spacing:.1em">/ NATIONALITY</small></span></div>
-    <span class="edition">VOL. 01 · POP ART</span>
-  </header>
-  <section id="homeScreen" class="screen-home">
-    <main class="main hero">
-      <div class="hero-copy">
-        <span class="eyebrow">✦ THE BUREAU HAS AN OPINION</span>
-        <h1><span>别解释。</span><em><strong>先把照片</strong><br><i>交上来。</i></em></h1>
-        <p class="lead">程序很严格，结论看本官心情。</p>
-        <div id="dropzone" class="upload-zone">
-          <div class="zone-top"><span>上传一张照片</span><b>01 / 02</b></div>
-          <button class="big-button" id="uploadBtn" type="button">✶ 呈交照片 ↗</button>
-          <span class="file-note">JPG / PNG / WebP · 15 MB 以内</span>
-        </div>
-        <button class="sample" type="button" id="sampleBtn">没带照片？先审个替身。 ↗</button>
-        <p class="privacy">照片仅在本机处理，不上传服务器。<br>随机娱乐结果，不据长相判断真实国籍。</p>
-        <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" hidden>
-      </div>
-      <div class="art" aria-hidden="true">
-<div class="judge-visual">
-  <div class="judge-graphic">
-    <img class="judge-mascot" src="./assets/judge.webp" width="440" height="525" alt="" loading="eager" decoding="async" fetchpriority="high">
-    <span class="judge-pop-seal" aria-hidden="true">本官<br>已阅!</span>
-  </div>
-</div>
-        <span class="float-star">✳</span><span class="sticker one">本官<br>已阅!</span><span class="sticker two">✦ NO.001</span>
-        <div class="art-poster">
-          <div class="art-heading"><span>国籍鉴定</span><span>OFFICIAL-ish / 2026</span></div>
-          <div class="art-portrait">
-            <svg id="demoSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 470" aria-hidden="true">
-              <rect width="440" height="470" fill="#85ffd1"/><path d="M-20 60L460 230v80L-20 140z" fill="#5f4bff"/><circle cx="340" cy="90" r="79" fill="#ff72ab"/><path d="M0 440Q210 290 440 430V500H0" fill="#3d37bb"/><path d="M80 479C73 341 144 321 211 323c83-3 160 46 153 156" fill="#ffe95a" stroke="#20165e" stroke-width="9"/><rect x="163" y="260" width="94" height="97" rx="39" fill="#f7b792" stroke="#20165e" stroke-width="9"/><ellipse cx="213" cy="187" rx="109" ry="132" fill="#20165e"/><path d="M116 186C115 105 151 68 217 67s104 50 104 119v43c0 93-46 137-107 137-60 0-101-49-101-133z" fill="#ffcea4" stroke="#20165e" stroke-width="9"/><path d="M109 179Q118 45 217 49c81-6 123 63 114 139-26-15-39-27-55-65-54 50-98 56-167 56z" fill="#20165e"/><path d="M157 218q21-13 38 0m50 0q18-13 36 0" stroke="#20165e" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="177" cy="236" r="7" fill="#20165e"/><circle cx="266" cy="236" r="7" fill="#20165e"/><path d="M208 293q16 11 31-3" stroke="#c55a69" stroke-width="7" stroke-linecap="round" fill="none"/><ellipse cx="149" cy="269" rx="20" ry="10" fill="#ff93a1" opacity=".6"/><ellipse cx="286" cy="269" rx="20" ry="10" fill="#ff93a1" opacity=".6"/><path d="M100 168q31 14 44 37l-3 86-27-27-17-50z" fill="#20165e"/><path d="M336 168q-27 18-41 35l8 85 28-24 12-45z" fill="#20165e"/><path d="M206 78q61 28 94 8" fill="none" stroke="#ff6aaf" stroke-width="16" stroke-linecap="round"/>
-            </svg>
-          </div><div class="art-footer">本官说你是<br><span>日本人。</span></div>
-        </div>
-      </div>
-    </main>
-    <div class="footer-strip"><span>IMPRESSION STAMP © 2026</span><span>艺术感 × 一点不正经</span><span>01 — 02</span></div>
-  </section>
-  <section id="resultScreen" class="screen-result" hidden>
-    <main class="main">
-      <div class="result-head">
-        <div><small>02 / 02 · VERDICT</small><h2>本局结论已出。</h2></div>
-        <span class="ticket">✦ FINAL-ish<br>DECISION</span>
-      </div>
-      <div id="certificate" class="cert" role="img" aria-label="国籍鉴定趣味证书">
-        <div class="cert-shape1"></div><div class="cert-shape2"></div>
-        <div class="cert-upper"><span class="cert-serial">IMPRESSION STAMP / 2026<br>CASE FILE · NO. 001</span><span class="cert-mark">印</span></div>
-        <h2 class="cert-title">国籍鉴定</h2>
-        <div class="cert-english">THE BUREAU OF PERSONAL IMPRESSIONS</div>
-        <div class="cert-center">
-          <div class="cert-photo-wrap"><img id="certPhoto" class="cert-photo" alt="参与者提交的照片"><div class="photo-label">✦ 呈堂证物 / PHOTO</div></div>
-          <div class="country-area">
-            <span class="country-eyebrow">本官今日钦定</span>
-            <div class="country" id="countryResult">日本人</div>
-            <span class="country-roman" id="countryEnglish">JAPANESE / JP</span>
+  <main class="app-shell">
+    <section id="uploadScreen" class="screen upload-screen" aria-labelledby="uploadTitle">
+      <header class="site-header"><a class="brand" href="#" aria-label="国籍鉴定首页"><span class="brand-mark" aria-hidden="true">◎</span>国籍鉴定<span class="brand-english">NATIONALITY</span></a><span class="step-count">01 <span>/ 02</span></span></header>
+      <div class="upload-content">
+        <div class="upload-hero">
+          <div class="hero-copy">
+            <p class="eyebrow">本官坐堂 · 等你呈交</p>
+            <h1 id="uploadTitle" tabindex="-1">别解释。<br><span class="title-outline">先把照片交上来。</span></h1>
+            <p class="intro">结论看本官心情。</p>
           </div>
+          <img id="judgeMascot" class="judge-mascot" src="assets/zhongkui-judge.png?v=6" alt="Q版钟馗判官，拿着判笔等你呈交照片" width="256" height="256" decoding="async" fetchpriority="high">
         </div>
-        <div class="cert-band">本官已阅，暂不接受狡辩。</div>
-        <div class="cert-bottom"><span class="nameplate" id="nameplate">鉴定对象：神秘访客</span><span class="approved">✶<br>APPROVED</span></div>
-        <span class="cert-id" id="caseId">FILE #0001 / IMPRESSION STAMP</span>
+        <div class="play-modes" role="group" aria-label="选择玩法" hidden><button type="button" id="freeMode" aria-pressed="true">↻ 自由抽签</button><button type="button" id="dailyMode" aria-pressed="false">✦ 每日一签</button></div>
+        <p id="modeHelp" class="mode-help" hidden></p>
+        <label class="upload-card" id="uploadZone" for="photo">
+          <input type="file" id="photo" accept="image/jpeg,image/png,image/webp" aria-describedby="uploadHelp">
+          <span class="upload-frame" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><rect x="12" y="13" width="40" height="39" rx="3" stroke="currentColor" stroke-width="1.4"/><circle cx="26" cy="27" r="5" stroke="currentColor" stroke-width="1.4"/><path d="m15 46 13-13 10 10 6-6 6 7M46 7v12m-6-6h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <strong id="uploadLabel">上传一张照片</strong>
+          <span class="upload-cta" id="uploadCta">呈交照片 <span aria-hidden="true">↗</span></span>
+          <span class="upload-help" id="uploadHelp">JPG / PNG / WebP · 15 MB 以内</span>
+        </label>
+        <button type="button" class="demo-button" id="demoButton">不用照片，直接试玩 <span aria-hidden="true">→</span></button>
+        <div class="home-summary"><p class="how-to" aria-label="游玩步骤">传照片 → 领身份 → 存证书</p><div class="passport-teaser" aria-label="我的平行护照收藏进度"><span aria-hidden="true">✦</span><strong id="homeCollection">0 / 6 已解锁</strong></div></div>
+        <p id="storageNotice" class="storage-notice" hidden>当前浏览器无法保存进度，收藏仅在本次页面内保留。</p>
+        <p id="uploadMessage" class="message" role="status" aria-live="polite"></p>
       </div>
-      <div class="actions">
-        <button class="action primary" id="saveBtn" type="button">↓ 保存高清证书</button>
-        <button class="action secondary" id="retryBtn" type="button">↺ 申请重审</button>
-      </div>
-      <details class="extras">
-        <summary>✎ 想给证书改个名字？</summary>
-        <div class="extra-row"><label for="nickname">鉴定对象</label><input id="nickname" maxlength="12" value="神秘访客" aria-label="证书昵称"><button id="applyNameBtn" class="mini-btn" type="button">确认修改</button></div>
-        <div class="extra-row"><button class="mini-btn" id="printBtn" type="button">打印 / 保存 PDF</button><button class="mini-btn" id="changePhotoBtn" type="button">↩ 换一张照片</button></div>
-      </details>
-      <p class="loading-note" id="saveHint" aria-live="polite"></p>
-    </main>
-  </section>
-</div>
-<div class="toast" role="status" id="toast" hidden></div>
-<script>
-(function(){
-"use strict";
-var countries=[
- {name:"日本人",en:"JAPANESE / JP",color:"#4e54ff"},
- {name:"法国人",en:"FRENCH / FR",color:"#fa358e"},
- {name:"意大利人",en:"ITALIAN / IT",color:"#255fc8"},
- {name:"巴西人",en:"BRAZILIAN / BR",color:"#1d936f"},
- {name:"韩国人",en:"KOREAN / KR",color:"#4e54ff"},
- {name:"英国人",en:"BRITISH / GB",color:"#fa358e"}
-];
-var $=function(id){return document.getElementById(id);};
-var home=$("homeScreen"),result=$("resultScreen"),fileInput=$("fileInput"),drop=$("dropzone"),portrait=$("certPhoto");
-var current=null,activeUrl=null,name="神秘访客",caseNumber=0,toastTimer;
-function notice(message){var t=$("toast");t.textContent=message;t.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.hidden=true;},3300);}
-function chooseCountry(){var r=Math.random();if(r<0.7)return countries[0];return countries[1+Math.floor(Math.random()*(countries.length-1))];}
-function setCountry(c){current=c;$("countryResult").textContent=c.name;$("countryResult").style.color=c.color;$("countryEnglish").textContent=c.en;}
-function openResult(source){setCountry(chooseCountry());caseNumber++;$("caseId").textContent="FILE #"+String(caseNumber).padStart(4,"0")+" / IMPRESSION STAMP";portrait.src=source;home.hidden=true;result.hidden=false;window.scrollTo(0,0);}
-function showHome(){result.hidden=true;home.hidden=false;window.scrollTo(0,0);}
-function loadPhoto(file){
- if(!file)return;
- if(!["image/jpeg","image/png","image/webp"].includes(file.type)){notice("请上传 JPG、PNG 或 WebP 图片");return;}
- if(file.size>15*1024*1024){notice("图片请控制在 15 MB 以内");return;}
- var testUrl=URL.createObjectURL(file),testImg=new Image();
- testImg.onload=function(){if(activeUrl)URL.revokeObjectURL(activeUrl);activeUrl=testUrl;openResult(testUrl);};
- testImg.onerror=function(){URL.revokeObjectURL(testUrl);notice("这张图片无法读取，请换一张");};
- testImg.src=testUrl;
-}
-$("uploadBtn").addEventListener("click",function(){fileInput.click();});
-fileInput.addEventListener("change",function(e){loadPhoto(e.target.files&&e.target.files[0]);fileInput.value="";});
-["dragenter","dragover"].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add("drag");});});
-["dragleave","drop"].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove("drag");});});
-drop.addEventListener("drop",function(e){loadPhoto(e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0]);});
-$("sampleBtn").addEventListener("click",function(){
- var svg=$("demoSvg").cloneNode(true);svg.setAttribute("xmlns","http://www.w3.org/2000/svg");var code=new XMLSerializer().serializeToString(svg),source="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(code);openResult(source);
-});
-$("retryBtn").addEventListener("click",function(){var before=current&&current.name,next=chooseCountry(),tries=0;while(next.name===before&&tries++<20)next=chooseCountry();setCountry(next);caseNumber++;$("caseId").textContent="FILE #"+String(caseNumber).padStart(4,"0")+" / IMPRESSION STAMP";notice("重审完毕，本官重新钦定了结果");});
-$("applyNameBtn").addEventListener("click",function(){name=$("nickname").value.trim().slice(0,12)||"神秘访客";$("nickname").value=name;$("nameplate").textContent="鉴定对象："+name;notice("证书署名已更新");});
-$("nickname").addEventListener("keydown",function(e){if(e.key==="Enter")$("applyNameBtn").click();});
-$("printBtn").addEventListener("click",function(){window.print();});$("changePhotoBtn").addEventListener("click",function(){showHome();fileInput.click();});
-function roundRect(ctx,x,y,w,h,r,fill,stroke,lineWidth){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.lineWidth=lineWidth||5;ctx.strokeStyle=stroke;ctx.stroke();}}
-function txt(ctx,v,x,y,size,color,weight,align){ctx.font=(weight||900)+" "+size+"px 'Arial Black','PingFang SC','Microsoft YaHei',sans-serif";ctx.fillStyle=color;ctx.textAlign=align||"left";ctx.fillText(v,x,y);}
-function drawPhoto(ctx,img,x,y,w,h){
- ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();
- if(img && img.naturalWidth){
-  var scale=Math.max(w/img.naturalWidth,h/img.naturalHeight),iw=img.naturalWidth*scale,ih=img.naturalHeight*scale;
-  ctx.drawImage(img,x+(w-iw)/2,y+(h-ih)/2,iw,ih);
- }else{ctx.fillStyle="#afe8e2";ctx.fillRect(x,y,w,h);}
- ctx.restore();
-}
-async function downloadCard(){
- var btn=$("saveBtn");btn.disabled=true;btn.textContent="正在制作高清证书…";
- try{
-  if(document.fonts&&document.fonts.ready)await document.fonts.ready;
-  var img=portrait;
-  if(!img.complete||!img.naturalWidth){await new Promise(function(resolve,reject){img.addEventListener("load",resolve,{once:true});img.addEventListener("error",reject,{once:true});});}
-  var canvas=document.createElement("canvas");canvas.width=1200;canvas.height=1600;var ctx=canvas.getContext("2d");
-  if(!ctx)throw new Error("canvas unavailable");
-  var ink="#20165e",cream="#fffaf0",acid="#fff34f",pink="#ff6aaf";
-  ctx.fillStyle=cream;ctx.fillRect(0,0,1200,1600);
-  ctx.fillStyle="#d8d0f0";for(var yy=6;yy<1600;yy+=26){for(var xx=6;xx<1200;xx+=26){ctx.beginPath();ctx.arc(xx,yy,1.5,0,Math.PI*2);ctx.fill();}}
-  ctx.save();ctx.translate(1080,310);ctx.rotate(-.5);ctx.fillStyle="#84ffd0";ctx.strokeStyle=ink;ctx.lineWidth=6;ctx.fillRect(-380,-160,650,450);ctx.strokeRect(-380,-160,650,450);ctx.restore();
-  ctx.save();ctx.translate(0,1450);ctx.rotate(-.18);ctx.fillStyle=pink;ctx.strokeStyle=ink;ctx.lineWidth=6;ctx.fillRect(-300,-140,940,330);ctx.strokeRect(-300,-140,940,330);ctx.restore();
-  ctx.strokeStyle=ink;ctx.lineWidth=8;ctx.strokeRect(6,6,1188,1588);
-  txt(ctx,"IMPRESSION STAMP / 2026",72,100,25,ink,900);
-  txt(ctx,"CASE FILE · NO. 001",72,141,23,ink,900);
-  ctx.save();ctx.translate(1070,109);ctx.rotate(-.21);roundRect(ctx,-63,-63,126,126,62,acid,ink,7);txt(ctx,"印",0,35,79,ink,900,"center");ctx.restore();
-  txt(ctx,"国籍鉴定",65,315,151,ink,1000);
-  ctx.strokeStyle=ink;ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(69,354);ctx.lineTo(1126,354);ctx.stroke();
-  txt(ctx,"THE BUREAU OF PERSONAL IMPRESSIONS",72,393,31,ink,1000);
-  ctx.save();ctx.translate(325,795);ctx.rotate(-.07);roundRect(ctx,-254,-320,508,638,0,"#fff",ink,7);
-  ctx.fillStyle="#eff2fa";ctx.fillRect(-227,-291,454,535);drawPhoto(ctx,img,-227,-291,454,535);ctx.strokeStyle=ink;ctx.lineWidth=5;ctx.strokeRect(-227,-291,454,535);
-  txt(ctx,"✦ 呈堂证物 / PHOTO",-228,290,27,ink,900);ctx.restore();
-  roundRect(ctx,608,568,475,68,0,pink,ink,5);txt(ctx,"本官今日钦定",636,615,36,ink,900);
-  var textSize=current.name.length<=3?130:current.name.length===4?113:97;
-  ctx.font="1000 "+textSize+"px 'Arial Black','PingFang SC','Microsoft YaHei',sans-serif";
-  ctx.lineJoin="round";ctx.lineWidth=5;ctx.textAlign="left";ctx.strokeStyle=ink;ctx.strokeText(current.name,601,800);
-  txt(ctx,current.name,600,800,textSize,current.color,1000);
-  txt(ctx,current.en,611,870,29,ink,1000);
-  ctx.save();ctx.translate(600,1196);ctx.rotate(-.047);ctx.fillStyle=acid;ctx.strokeStyle=ink;ctx.lineWidth=7;ctx.fillRect(-660,-76,1320,149);ctx.strokeRect(-660,-76,1320,149);txt(ctx,"本官已阅，暂不接受狡辩。",0,21,52,ink,1000,"center");ctx.restore();
-  var displayed="鉴定对象："+name;if(displayed.length>15)displayed=displayed.slice(0,15);
-  roundRect(ctx,72,1330,640,95,0,"#fff",ink,5);txt(ctx,displayed,96,1392,35,ink,1000);
-  ctx.save();ctx.translate(1000,1373);ctx.rotate(-.2);ctx.setLineDash([12,9]);roundRect(ctx,-135,-74,270,148,0,null,"#ed2b89",7);ctx.setLineDash([]);txt(ctx,"✶",0,-4,42,"#ed2b89",1000,"center");txt(ctx,"APPROVED",0,47,34,"#ed2b89",1000,"center");ctx.restore();
-  txt(ctx,"FILE #"+String(caseNumber).padStart(4,"0")+" / IMPRESSION STAMP",1125,1548,24,ink,900,"right");
-  var blob=await new Promise(function(resolve){canvas.toBlob(resolve,"image/png",1);});if(!blob)throw new Error("image export unavailable");
-  var obj=URL.createObjectURL(blob),a=document.createElement("a");a.href=obj;a.download="国籍鉴定-"+String(caseNumber).padStart(4,"0")+".png";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(obj);},60000);$("saveHint").textContent="已生成 1200 × 1600 高清 PNG。若手机未自动保存，请查看浏览器下载记录。";
- }catch(e){console.error(e);notice("保存遇到问题，可以尝试打印 / 保存 PDF");}finally{btn.disabled=false;btn.textContent="↓ 保存高清证书";}
-}
-$("saveBtn").addEventListener("click",downloadCard);
-})();
-</script>
+      <footer class="upload-footer"><p><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="9" width="10" height="8" rx="1.5"/><path d="M7 9V6a3 3 0 0 1 6 0v3"/></svg>照片仅在本机处理，不上传服务器</p><span>随机娱乐结果 · 不据长相判断真实国籍</span></footer>
+    </section>
+
+    <section id="certificateScreen" class="screen certificate-screen" aria-labelledby="resultHeading" hidden>
+      <header class="result-header"><button type="button" id="backToUpload" class="back-button"><span aria-hidden="true">←</span> 换张照片</button><span class="result-brand">国籍鉴定 <span>02 / 02</span></span><button type="button" id="settingsToggle" class="edit-button" aria-controls="settingsPanel" aria-expanded="false">编辑 <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m12 3 5 5M3 17l4-1 10-10-4-4L3 12v5Z"/></svg></button></header>
+      <div class="result-title"><span class="eyebrow">THE BUREAU HAS SPOKEN</span><h1 id="resultHeading" tabindex="-1" aria-live="polite">本官正在酝酿结论</h1></div>
+      <div id="roleStory" class="role-story" hidden><div class="role-topline"><span>本官随机判词</span></div><h2 id="roleTitle"></h2><p id="roleLine"></p><p id="rolePerk" class="role-perk"></p></div>
+      <div id="certificateStage" class="certificate-stage"><canvas id="certificate" width="1200" height="1600" role="img" aria-label="国籍鉴定风格文书；结果随机生成，仅供娱乐，与真实国籍无关。"></canvas><div id="generationOverlay" class="generation-overlay" hidden><span class="spinner" aria-hidden="true"></span><strong id="progressText">正在领取本局签号…</strong><span id="progressPercent">0%</span><div id="progressBar" class="progress-track" role="progressbar" aria-label="证书生成进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progressFill"></span></div></div></div>
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+      <p class="result-rule" id="resultRule">随机娱乐角色，与照片长相和真实国籍无关。</p>
+      <div class="share-row"><button type="button" id="shareResult" disabled>↗ 分享本局身份</button><button type="button" id="inviteFriend">邀请朋友也来抽 →</button></div>
+      <p id="shareStatus" class="share-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+      <div id="shareFallback" class="share-fallback" hidden><label for="shareCopy">长按或选中文案复制，发给朋友</label><textarea id="shareCopy" readonly rows="4"></textarea></div>
+      <div id="mobileSave" class="mobile-save" hidden><a id="openPng" href="#" target="_blank" rel="noopener">打开高清图片，长按保存 ↗</a><p>如果相册没有收到图片，可用上方方式保存。</p></div>
+      <div class="action-dock"><button type="button" id="generate" class="redraw-button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M6 7a7 7 0 0 1 12-1l2 6M4 12l2 6a7 7 0 0 0 12-1"/></svg><span id="generateLabel">申请重审</span></button><button type="button" id="savePng" class="save-button" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v10m-4-4 4 4 4-4M3 13v4h14v-4"/></svg><span>带走本局结论</span></button></div>
+    </section>
+  </main>
+  <div id="shareToast" class="share-toast" aria-hidden="true" hidden></div>
+
+  <div id="settingsPanel" class="settings-backdrop" hidden><section class="settings-sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle"><div class="sheet-handle" aria-hidden="true"></div><header><h2 id="settingsTitle">编辑证书</h2><button type="button" id="settingsClose" aria-label="关闭编辑">×</button></header><form id="application"><fieldset id="formFields"><div class="photo-summary"><img id="photoPreview" alt="已选择的照片"><div><strong>你的照片已就位</strong><span id="photoName">本机照片</span></div><button type="button" id="removePhoto">更换</button></div><div class="label-row"><label for="nickname">证书昵称 <span>选填</span></label><span id="nameCount">0 / 16</span></div><input type="text" id="nickname" maxlength="32" autocomplete="off" placeholder="填写昵称，无需真实姓名"><button type="button" id="oddsToggle" class="odds-toggle" aria-expanded="false" aria-controls="oddsControls"><span>随机规则</span><span>日本 <strong id="oddsBadge">70%</strong> <span aria-hidden="true">⌄</span></span></button><div id="oddsControls" class="odds-controls" hidden><label for="japanChance">日本角色抽签概率</label><input id="japanChance" type="range" min="5" max="95" step="5" value="70"><div class="range-labels"><span>5%</span><span>95%</span></div><p>其余五个角色均分剩余概率，与照片内容无关。</p></div><p id="settingsStatus" class="settings-status" role="status">昵称会直接更新，概率在下次抽签时生效。</p><button type="button" id="printCertificate" class="print-button" disabled>打印 / 另存为 PDF <span aria-hidden="true">↗</span></button></fieldset></form><button type="button" id="settingsDone" class="done-button">完成</button></section></div>
+  <section id="printArea" aria-hidden="true"><img id="printImage" alt="国籍鉴定风格文书：结果随机生成，仅供娱乐，与真实国籍无关。"></section>
 </body>
 </html>

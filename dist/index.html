@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#fff04d">
+  <meta name="description" content="上传照片，随机领取一份国籍鉴定风格的娱乐文书。照片仅在本机处理，结果与真实国籍无关。">
+  <meta property="og:title" content="国籍鉴定 · 随机娱乐测试">
+  <meta property="og:description" content="别解释。先把照片交上来。程序很严格，结论看本官心情。">
+  <meta property="og:url" content="https://parallel-passport-kai.imjusttrying341.chatgpt.site">
+  <link rel="canonical" href="https://parallel-passport-kai.imjusttrying341.chatgpt.site">
+  <title>国籍鉴定 · 随机娱乐测试</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect rx='16' width='64' height='64' fill='%23232e3c'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23f4f2eb' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23f4f2eb'/%3E%3C/svg%3E">
+  <link rel="preload" href="fonts/parallel-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css?v=8">
+  <script type="module" src="app.js?v=9"></script>
+</head>
+<body>
+  <main class="app-shell">
+    <section id="uploadScreen" class="screen upload-screen" aria-labelledby="uploadTitle">
+      <header class="site-header"><a class="brand" href="#" aria-label="国籍鉴定首页"><span class="brand-mark" aria-hidden="true">◎</span>国籍鉴定<span class="brand-english">NATIONALITY</span></a><span class="step-count">01 <span>/ 02</span></span></header>
+      <div class="upload-content">
+        <div class="upload-hero">
+          <div class="hero-copy">
+            <p class="eyebrow">本官坐堂 · 等你呈交</p>
+            <h1 id="uploadTitle" tabindex="-1">别解释。<br><span class="title-outline">先把照片交上来。</span></h1>
+            <p class="intro">结论看本官心情。</p>
+          </div>
+          <img id="judgeMascot" class="judge-mascot" src="assets/zhongkui-judge.png?v=6" alt="Q版钟馗判官，拿着判笔等你呈交照片" width="256" height="256" decoding="async" fetchpriority="high">
+        </div>
+        <div class="play-modes" role="group" aria-label="选择玩法" hidden><button type="button" id="freeMode" aria-pressed="true">↻ 自由抽签</button><button type="button" id="dailyMode" aria-pressed="false">✦ 每日一签</button></div>
+        <p id="modeHelp" class="mode-help" hidden></p>
+        <label class="upload-card" id="uploadZone" for="photo">
+          <input type="file" id="photo" accept="image/jpeg,image/png,image/webp" aria-describedby="uploadHelp">
+          <span class="upload-frame" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><rect x="12" y="13" width="40" height="39" rx="3" stroke="currentColor" stroke-width="1.4"/><circle cx="26" cy="27" r="5" stroke="currentColor" stroke-width="1.4"/><path d="m15 46 13-13 10 10 6-6 6 7M46 7v12m-6-6h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <strong id="uploadLabel">上传一张照片</strong>
+          <span class="upload-cta" id="uploadCta">呈交照片 <span aria-hidden="true">↗</span></span>
+          <span class="upload-help" id="uploadHelp">JPG / PNG / WebP · 15 MB 以内</span>
+        </label>
+        <button type="button" class="demo-button" id="demoButton">不用照片，直接试玩 <span aria-hidden="true">→</span></button>
+        <div class="home-summary"><p class="how-to" aria-label="游玩步骤">传照片 → 领身份 → 存证书</p><div class="passport-teaser" aria-label="我的平行护照收藏进度"><span aria-hidden="true">✦</span><strong id="homeCollection">0 / 6 已解锁</strong></div></div>
+        <p id="storageNotice" class="storage-notice" hidden>当前浏览器无法保存进度，收藏仅在本次页面内保留。</p>
+        <p id="uploadMessage" class="message" role="status" aria-live="polite"></p>
+      </div>
+      <footer class="upload-footer"><p><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="9" width="10" height="8" rx="1.5"/><path d="M7 9V6a3 3 0 0 1 6 0v3"/></svg>照片仅在本机处理，不上传服务器</p><span>随机娱乐结果 · 不据长相判断真实国籍</span></footer>
+    </section>
+
+    <section id="certificateScreen" class="screen certificate-screen" aria-labelledby="resultHeading" hidden>
+      <header class="result-header"><button type="button" id="backToUpload" class="back-button"><span aria-hidden="true">←</span> 换张照片</button><span class="result-brand">国籍鉴定 <span>02 / 02</span></span><button type="button" id="settingsToggle" class="edit-button" aria-controls="settingsPanel" aria-expanded="false">编辑 <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m12 3 5 5M3 17l4-1 10-10-4-4L3 12v5Z"/></svg></button></header>
+      <div class="result-title"><span class="eyebrow">THE BUREAU HAS SPOKEN</span><h1 id="resultHeading" tabindex="-1" aria-live="polite">本官正在酝酿结论</h1></div>
+      <div id="roleStory" class="role-story" hidden><div class="role-topline"><span>本官随机判词</span></div><h2 id="roleTitle"></h2><p id="roleLine"></p><p id="rolePerk" class="role-perk"></p></div>
+      <div id="certificateStage" class="certificate-stage"><canvas id="certificate" width="1200" height="1600" role="img" aria-label="国籍鉴定风格文书；结果随机生成，仅供娱乐，与真实国籍无关。"></canvas><div id="generationOverlay" class="generation-overlay" hidden><span class="spinner" aria-hidden="true"></span><strong id="progressText">正在领取本局签号…</strong><span id="progressPercent">0%</span><div id="progressBar" class="progress-track" role="progressbar" aria-label="证书生成进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progressFill"></span></div></div></div>
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+      <p class="result-rule" id="resultRule">随机娱乐角色，与照片长相和真实国籍无关。</p>
+      <div class="share-row"><button type="button" id="shareResult" disabled>↗ 分享本局身份</button><button type="button" id="inviteFriend">邀请朋友也来抽 →</button></div>
+      <p id="shareStatus" class="share-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+      <div id="shareFallback" class="share-fallback" hidden><label for="shareCopy">长按或选中文案复制，发给朋友</label><textarea id="shareCopy" readonly rows="4"></textarea></div>
+      <div id="mobileSave" class="mobile-save" hidden><a id="openPng" href="#" target="_blank" rel="noopener">打开高清图片，长按保存 ↗</a><p>如果相册没有收到图片，可用上方方式保存。</p></div>
+      <div class="action-dock"><button type="button" id="generate" class="redraw-button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M6 7a7 7 0 0 1 12-1l2 6M4 12l2 6a7 7 0 0 0 12-1"/></svg><span id="generateLabel">申请重审</span></button><button type="button" id="savePng" class="save-button" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v10m-4-4 4 4 4-4M3 13v4h14v-4"/></svg><span>带走本局结论</span></button></div>
+    </section>
+  </main>
+  <div id="shareToast" class="share-toast" aria-hidden="true" hidden></div>
+
+  <div id="settingsPanel" class="settings-backdrop" hidden><section class="settings-sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle"><div class="sheet-handle" aria-hidden="true"></div><header><h2 id="settingsTitle">编辑证书</h2><button type="button" id="settingsClose" aria-label="关闭编辑">×</button></header><form id="application"><fieldset id="formFields"><div class="photo-summary"><img id="photoPreview" alt="已选择的照片"><div><strong>你的照片已就位</strong><span id="photoName">本机照片</span></div><button type="button" id="removePhoto">更换</button></div><div class="label-row"><label for="nickname">证书昵称 <span>选填</span></label><span id="nameCount">0 / 16</span></div><input type="text" id="nickname" maxlength="32" autocomplete="off" placeholder="填写昵称，无需真实姓名"><button type="button" id="oddsToggle" class="odds-toggle" aria-expanded="false" aria-controls="oddsControls"><span>随机规则</span><span>日本 <strong id="oddsBadge">70%</strong> <span aria-hidden="true">⌄</span></span></button><div id="oddsControls" class="odds-controls" hidden><label for="japanChance">日本角色抽签概率</label><input id="japanChance" type="range" min="5" max="95" step="5" value="70"><div class="range-labels"><span>5%</span><span>95%</span></div><p>其余五个角色均分剩余概率，与照片内容无关。</p></div><p id="settingsStatus" class="settings-status" role="status">昵称会直接更新，概率在下次抽签时生效。</p><button type="button" id="printCertificate" class="print-button" disabled>打印 / 另存为 PDF <span aria-hidden="true">↗</span></button></fieldset></form><button type="button" id="settingsDone" class="done-button">完成</button></section></div>
+  <section id="printArea" aria-hidden="true"><img id="printImage" alt="国籍鉴定风格文书：结果随机生成，仅供娱乐，与真实国籍无关。"></section>
+</body>
+</html>
